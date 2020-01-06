@@ -43,6 +43,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
      *
      */
     private TextView mBt;
+    private Timer t;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,7 +55,8 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
         m.put("id","1");
         MyRe.re(m, "/dataInterface/UserWorkEnvironmental/getInfo");
-        new Timer().schedule(new TimerTask() {
+        t = new Timer();
+                t.schedule(new TimerTask() {
             @Override
             public void run() {
                 JSONObject j = MyRe.re(m, "/dataInterface/UserWorkEnvironmental/getInfo");
@@ -107,6 +109,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.bi:
                 finish();
+                t.cancel();
                 break;
         }
     }

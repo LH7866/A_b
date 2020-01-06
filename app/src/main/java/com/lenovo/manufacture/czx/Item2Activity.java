@@ -40,6 +40,7 @@ public class Item2Activity extends AppCompatActivity implements View.OnClickList
     private Button mB2;
     private ImageView mI1;
     private ImageView mI2;
+    private Timer t;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +70,7 @@ public class Item2Activity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.bi:
                 finish();
+                t.cancel();
                 break;
             case R.id.b1:
                 int a = 1;
@@ -89,7 +91,8 @@ public class Item2Activity extends AppCompatActivity implements View.OnClickList
         HashMap<String, String> m = new HashMap<>();
         m.put("id", "1");
 //        JSONObject jo =MyRe.re(m,"/dataInterface/UserWorkEnvironmental/getInfo");
-        new Timer().schedule(new TimerTask() {
+        t = new Timer();
+        t.schedule(new TimerTask() {
             @Override
             public void run() {
                 JSONObject j = MyRe.re(m, "/dataInterface/UserWorkEnvironmental/getInfo");
@@ -134,6 +137,8 @@ public class Item2Activity extends AppCompatActivity implements View.OnClickList
             m.put("id","1");
             MyRe.re(m,"/dataInterface/UserWorkEnvironmental/updateAcOnOff");
             m.put("acOnOff","0");
+            mI1.setImageResource(R.drawable.cold0002);
+            mI2.setImageResource(R.drawable.hot0001);
         }
 
     }
