@@ -14,6 +14,8 @@ import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.lenovo.manufacture.zhy.Market;
+
 /**
  * @author Amoly
  * @date 2019/10/24.
@@ -88,15 +90,17 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         webSetting.setDefaultZoom(zoomDensity);
+        webView.addJavascriptInterface(new JavaScriptInterface(this),"M");
     }
 
 
 
     public class JavaScriptInterface {
-        Activity mActivity;
+        Activity mActivity,markActivity;
 
         JavaScriptInterface(Activity mActivity) {
             this.mActivity = mActivity;
+            this.markActivity=mActivity;
         }
 
         /**
@@ -109,6 +113,14 @@ public class MainActivity extends AppCompatActivity {
 //            intent.putExtra("replyID", "replyID");
             intent.setClass(mActivity, TestActivity.class);
             mActivity.startActivity(intent);
+        }
+        @JavascriptInterface
+        public void startMark() {
+            Intent intent1 = new Intent();
+//            intent.putExtra("fromWhich", "webViewUrl");
+//            intent.putExtra("replyID", "replyID");
+            intent1.setClass(markActivity, Market.class);
+            markActivity.startActivity(intent1);
         }
     }
 
