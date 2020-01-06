@@ -90,7 +90,11 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         webSetting.setDefaultZoom(zoomDensity);
+
         webView.addJavascriptInterface(new JavaScriptInterface(this),"M");
+
+        webView.addJavascriptInterface(new JavaScriptInterface(this), "android");
+
     }
 
 
@@ -107,11 +111,39 @@ public class MainActivity extends AppCompatActivity {
          * 与js交互时用到的方法，在js里直接调用的
          */
         @JavascriptInterface
-        public void startActivity() {
+        public void startActivity(int activityName) {
             Intent intent = new Intent();
 //            intent.putExtra("fromWhich", "webViewUrl");
 //            intent.putExtra("replyID", "replyID");
-            intent.setClass(mActivity, TestActivity.class);
+            switch (activityName) {
+                case 1:
+                    intent.setClass(mActivity, TestActivity.class);
+                    break;
+//                case 2:
+//                    intent.setClass(mActivity, Item2Activity.class);
+//                    break;
+//                case 3:
+//                    intent.setClass(mActivity, Item3Activity.class);
+//                    break;
+//                case 4:
+//                    intent.setClass(mActivity, Item4Activity.class);
+//                    break;
+//                case 5:
+//                    intent.setClass(mActivity, Item5Activity.class);
+//                    break;
+//                case 6:
+//                    intent.setClass(mActivity, Item6Activity.class);
+//                    break;
+//                case 7:
+//                    intent.setClass(mActivity, Item7Activity.class);
+//                    break;
+//                case 8:
+//                    intent.setClass(mActivity, Item8Activity.class);
+//                    break;
+                default:
+                    break;
+            }
+
             mActivity.startActivity(intent);
         }
         @JavascriptInterface
