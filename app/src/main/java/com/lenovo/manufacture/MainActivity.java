@@ -118,12 +118,14 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     intent.setClass(mActivity, TestActivity.class);
                     break;
+
                 case 2:
                     intent.setClass(mActivity, Item2Activity.class);
                     break;
                 case 3:
                     intent.setClass(mActivity, Market.class);
                     break;
+
 //                case 4:
 //                    intent.setClass(mActivity, Item4Activity.class);
 //                    break;
@@ -142,8 +144,9 @@ public class MainActivity extends AppCompatActivity {
                 default:
                     break;
             }
-
             mActivity.startActivity(intent);
+
+
         }
     }
 
