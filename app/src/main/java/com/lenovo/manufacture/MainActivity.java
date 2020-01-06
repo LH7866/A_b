@@ -12,9 +12,10 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.lenovo.manufacture.czx.Item2Activity;
 import com.lenovo.manufacture.zhy.Market;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * @author Amoly
@@ -117,12 +118,12 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     intent.setClass(mActivity, TestActivity.class);
                     break;
-//                case 2:
-//                    intent.setClass(mActivity, Item2Activity.class);
-//                    break;
-//                case 3:
-//                    intent.setClass(mActivity, Item3Activity.class);
-//                    break;
+                case 2:
+                    intent.setClass(mActivity, Item2Activity.class);
+                    break;
+                case 3:
+                    intent.setClass(mActivity, Market.class);
+                    break;
 //                case 4:
 //                    intent.setClass(mActivity, Item4Activity.class);
 //                    break;
@@ -143,14 +144,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
             mActivity.startActivity(intent);
-        }
-        @JavascriptInterface
-        public void startMark() {
-            Intent intent1 = new Intent();
-//            intent.putExtra("fromWhich", "webViewUrl");
-//            intent.putExtra("replyID", "replyID");
-            intent1.setClass(markActivity, Market.class);
-            markActivity.startActivity(intent1);
         }
     }
 
