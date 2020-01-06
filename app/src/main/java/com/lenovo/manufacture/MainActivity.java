@@ -91,8 +91,6 @@ public class MainActivity extends AppCompatActivity {
         }
         webSetting.setDefaultZoom(zoomDensity);
 
-        webView.addJavascriptInterface(new JavaScriptInterface(this),"M");
-
         webView.addJavascriptInterface(new JavaScriptInterface(this), "android");
 
     }
