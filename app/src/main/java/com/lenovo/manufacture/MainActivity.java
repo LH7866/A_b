@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import com.lenovo.manufacture.czx.Item2Activity;
 import com.lenovo.manufacture.czx.Item6Activity;
 import com.lenovo.manufacture.zhy.Market;
+import com.lenovo.manufacture.zhy.Problem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -100,11 +101,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     public class JavaScriptInterface {
-        Activity mActivity,markActivity;
+        Activity mActivity;
 
         JavaScriptInterface(Activity mActivity) {
             this.mActivity = mActivity;
-            this.markActivity=mActivity;
         }
 
         /**
@@ -130,12 +130,12 @@ public class MainActivity extends AppCompatActivity {
 //                case 4:
 //                    intent.setClass(mActivity, Item4Activity.class);
 //                    break;
-//                case 5:
-//                    intent.setClass(mActivity, Item5Activity.class);
-//                    break;
+               case 5:
+                   intent.setClass(mActivity, Problem.class);
+                 break;
                 case 6:
                     intent.setClass(mActivity, Item6Activity.class);
-//                    break;
+                 break;
 //                case 7:
 //                    intent.setClass(mActivity, Item7Activity.class);
 //                    break;
