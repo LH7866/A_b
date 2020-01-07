@@ -132,7 +132,6 @@ public class Item8 extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.ig:
                 b="0";
-                Log.d("sssss",b);
                 break;
         }
     }
