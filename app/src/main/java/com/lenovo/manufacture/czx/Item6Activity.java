@@ -1,5 +1,9 @@
 package com.lenovo.manufacture.czx;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,12 +24,7 @@ import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
-public class Item6Activity extends AppCompatActivity implements View.OnClickListener {
-
+public class Item6Activity extends AppCompatActivity implements View.OnClickListener{
     private ImageView mBi;
     /**
      *
@@ -59,11 +58,9 @@ public class Item6Activity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_item6);
         initView();
         product();
-
     }
-
     private void product() {
-        HashMap<String,String>  m = new HashMap<>();
+        HashMap<String,String> m = new HashMap<>();
         m.put("id", "1");
         t = new Timer();
         t.schedule(new TimerTask() {
@@ -106,7 +103,6 @@ public class Item6Activity extends AppCompatActivity implements View.OnClickList
         },0,100);
 
     }
-
     private void send(int what, Object obj) {
 
         Item6Activity.this.handler.sendMessage(MyRe.getMessage(what,obj));
@@ -141,7 +137,6 @@ public class Item6Activity extends AppCompatActivity implements View.OnClickList
             }
         }
     };
-
     private void initView() {
         mBi = (ImageView) findViewById(R.id.bi);
         mBi.setOnClickListener(this);
