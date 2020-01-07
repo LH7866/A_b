@@ -44,8 +44,8 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
     private ImageView back,up,down;
        private ScrollView scrollView;
        private TableLayout tableRow;
-       List<PeopleBean> list=new ArrayList<>();
-       String a="0",b="1";
+       List<PeopleBean> list;
+       String a="1",b="1";
 
 
     @Override
@@ -57,6 +57,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
 
     //获取数据
     private void getData() {
+        list=new ArrayList<>();
         HashMap<String,String> r=new HashMap<>();
         MyRe.re(r,"/dataInterface/People/getAll");
         new Timer().schedule(new TimerTask() {
@@ -131,14 +132,12 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
                 break;
             case  R.id.iv_type:
                 hu(up,down);
-                a="0";
+                a="1";
+                getData();
                 break;
             case  R.id.iv_pay:
-                hu(up,down);
-
+                hu(down,up);
                 a="1";
-
-                b="1";
                 getData();
                 break;
         }
@@ -164,8 +163,8 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
 //                }
 //            });
 //        }
-        if (a.equals("0")){
-            if(b.equals("1")){
+        if (a.equals("1")){
+            if(b.equals("2")){
                 list.sort(new Comparator<PeopleBean>() {
                     @Override
                     public int compare(PeopleBean o1, PeopleBean o2) {
@@ -181,7 +180,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
                 });
             }
         }else {
-            if (a.equals("0")){
+            if (a.equals("1")){
                 list.sort(new Comparator<PeopleBean>() {
                     @Override
                     public int compare(PeopleBean o1, PeopleBean o2) {
@@ -218,13 +217,13 @@ public  void hu(ImageView up,ImageView down){
     Drawable.ConstantState t3=getDrawable(R.drawable.triangle0003).getConstantState();
     Drawable.ConstantState t4=getDrawable(R.drawable.triangle0004).getConstantState();
     if(t.equals(t1)||t.equals(t4)){
-        b="0";
-        up.setImageResource(R.drawable.triangle0002);
-    }else {
         b="1";
+        up.setImageResource(R.drawable.triangle0003);
+    }else {
+        b="2";
         up.setImageResource(R.drawable.triangle0001);
     }if (tt.equals(t2)||tt.equals(t3)){
-        down.setImageResource(R.drawable.triangle0003);
+        down.setImageResource(R.drawable.triangle0002);
     }else  {
         down.setImageResource(R.drawable.triangle0004);
     }
