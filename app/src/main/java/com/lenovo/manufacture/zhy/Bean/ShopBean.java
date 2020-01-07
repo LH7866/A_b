@@ -16,7 +16,7 @@ public class ShopBean {
          * supplyName : 新星汽车配件
          * supplyListId : 1
          */
-        private int id;
+        private String id;
         private String materialName;
         private String content;
         private int size;
@@ -24,17 +24,17 @@ public class ShopBean {
         private int lastUpdateTime;
         private int supplyId;
         private int materialId;
-        private int price;
-        private int num;
+        private String price;
+        private String num;
         private int costTime;
         private String supplyName;
         private int supplyListId;
 
-        public int getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(String id) {
             this.id = id;
         }
 
@@ -94,19 +94,19 @@ public class ShopBean {
             this.materialId = materialId;
         }
 
-        public int getPrice() {
+        public String getPrice() {
             return price;
         }
 
-        public void setPrice(int price) {
+        public void setPrice(String price) {
             this.price = price;
         }
 
-        public int getNum() {
+        public String getNum() {
             return num;
         }
 
-        public void setNum(int num) {
+        public void setNum(String num) {
             this.num = num;
         }
 

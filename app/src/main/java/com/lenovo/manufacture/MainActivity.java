@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import com.lenovo.manufacture.czx.Item2Activity;
 import com.lenovo.manufacture.czx.Item6Activity;
 import com.lenovo.manufacture.czx.Item7Activity;
+import com.lenovo.manufacture.czx.Item8;
 import com.lenovo.manufacture.zhy.Market;
 import com.lenovo.manufacture.zhy.Problem;
 import com.lenovo.manufacture.zhy.Shop;
@@ -141,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.setClass(mActivity, Item7Activity.class);
                     break;
                case 8:
-                  intent.setClass(mActivity, Shop.class);
+                  intent.setClass(mActivity, Item8.class);
                  break;
                 default:
                     break;

@@ -53,8 +53,6 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_market);
         init();
-        getData();
-
     }
 
     //获取数据
@@ -68,6 +66,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
                 JSONObject j = MyRe.re(r, "/dataInterface/People/getAll");
                 if (j !=null) {
                     try {
+
                         if (j.getString("message").equals("SUCCESS")) {
                             JSONArray data = j.getJSONArray("data");
                            for(int i=0;i<data.length();i++){
@@ -86,7 +85,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
                     }
                 }
             }
-        },0,1200000);
+        },0,120000);
     }
 
     public void send(int what,Object obj){
@@ -133,12 +132,14 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
             case  R.id.iv_type:
                 hu(up,down);
                 a="0";
-
                 break;
             case  R.id.iv_pay:
                 hu(up,down);
+
                 a="1";
 
+                b="1";
+                getData();
                 break;
         }
     }
@@ -198,15 +199,16 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
             }
         }
         for (PeopleBean bean :i) {
-            View view1 = View.inflate (Market.this, R.layout.table_item, null);
-            TextView textView1 = view1.findViewById (R.id.tv_1);
-            TextView textView2 = view1.findViewById (R.id.tv_2);
-            TextView textView3 = view1.findViewById (R.id.tv_3);
+            View view1 = View.inflate (Market.this, R.layout.table_item2, null);
+            TextView textView1 = view1.findViewById (R.id.txv_1);
+            TextView textView2 = view1.findViewById (R.id.txv_2);
+            TextView textView3 = view1.findViewById (R.id.txv_3);
             textView1.setText(bean.getPeopleName());
             textView2.setText(bean.getStatus());
             textView3.setText(bean.getGold());
             tableRow.addView (view1);
         }
+        list.clear();
     }
 public  void hu(ImageView up,ImageView down){
     Drawable.ConstantState t=up.getDrawable().getCurrent().getConstantState();

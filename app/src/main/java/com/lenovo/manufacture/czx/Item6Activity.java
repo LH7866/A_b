@@ -67,9 +67,8 @@ public class Item6Activity extends AppCompatActivity implements View.OnClickList
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void run() {
-                JSONObject j = MyRe.re(m, "/dataInterface/UserProductionLine/getAll");
-
                 try {
+                    JSONObject j = MyRe.re(m, "/dataInterface/UserProductionLine/getAll");
                     if (j != null) {
                         if (j.getString("message").equals("SUCCESS")) {
                             JSONArray data = j.getJSONArray("data");

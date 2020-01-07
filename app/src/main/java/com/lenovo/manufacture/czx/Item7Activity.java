@@ -62,7 +62,7 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_item7);
         initView();
         initLine();
-        getData();
+
     }
 
     private void getData() {
@@ -113,6 +113,7 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
             n.setText(s.getNum());
             mTl2.addView(view);
         }
+        list.clear();
     }
 
     private void send(int what, Object obj) {
@@ -226,7 +227,8 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
             case R.id.bi:
                 finish();
                 break;
-            case  R.id.tv_1:
+            case  R.id.l2:
+                getData();
         }
     }
 }

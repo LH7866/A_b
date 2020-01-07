@@ -23,6 +23,7 @@
         <activity android:name=".zhy.Shop"></activity>
         <activity android:name=".czx.Item7Activity"></activity>
         <activity android:name=".czx.Item6Activity" />
+        <activity android:name=".czx.Item8" />
         <activity android:name=".zhy.Problem" />
         <activity android:name=".czx.Item2Activity" />
         <activity android:name=".zhy.Market" />

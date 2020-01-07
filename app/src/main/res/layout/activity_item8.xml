@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E1E1E1"
     android:orientation="vertical">
     <FrameLayout
         android:layout_width="match_parent"
@@ -19,7 +20,7 @@
             android:textSize="25dp"
             android:textStyle="bold" />
         <ImageView
-            android:id="@+id/iv_shopping"
+            android:id="@+id/iv_shopping1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="right"
@@ -28,6 +29,7 @@
             android:onClick="onClick"
             android:src="@drawable/shoppingcar" />
     </FrameLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -40,9 +42,11 @@
 
         <TableLayout
             android:layout_width="match_parent"
+            android:background="@color/cardview_shadow_start_color"
             android:layout_height="wrap_content">
             <TableRow>
                 <TextView
+                    android:background="@color/cardview_light_background"
                     android:layout_height="50dp"
                     android:layout_weight="1"
                     android:width="0dp"
@@ -50,32 +54,39 @@
                     android:text="ID"
                     android:textColor="#000"
                     android:textSize="20sp"
+                    android:layout_margin="0.5dp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_height="50dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:width="0dp"
                     android:gravity="center"
                     android:text="商品名称"
+                    android:background="@color/cardview_light_background"
+                    android:layout_margin="0.5dp"
                     android:textColor="#000"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_height="50dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:width="0dp"
                     android:gravity="center"
                     android:text="供应商"
+                    android:background="@color/cardview_light_background"
+                    android:layout_margin="0.5dp"
                     android:textColor="#000"
                     android:textSize="20sp"
                     android:textStyle="bold" />
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:gravity="center"
+                    android:layout_margin="0.5dp"
+                    android:background="@color/cardview_light_background"
                     android:orientation="horizontal">
 
                     <TextView
@@ -88,6 +99,7 @@
                         android:textStyle="bold" />
 
                     <ImageView
+                        android:id="@+id/iy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/triangle0002" />
@@ -96,20 +108,24 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="50dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:gravity="center"
+                    android:background="@color/cardview_light_background"
+                    android:layout_margin="0.5dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="数量（个）"
+
                         android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="20dp"
                         android:textStyle="bold" />
 
                     <ImageView
+                        android:id="@+id/ig"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/triangle0002" />
@@ -118,17 +134,17 @@
 
             </TableRow>
             <ScrollView
-                android:id="@+id/sv_3"
+                android:id="@+id/sv_4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dp">
                 <LinearLayout
-                    android:id="@+id/ll_3"
+                    android:id="@+id/ll_4"
                     android:layout_width="match_parent"
                     android:orientation="vertical"
                     android:layout_height="wrap_content">
                     <TableLayout
-                        android:id="@+id/tl_3"
+                        android:id="@+id/tl_4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                     </TableLayout>
@@ -137,6 +153,7 @@
         </TableLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -148,6 +165,7 @@
         android:gravity="center">
 
         <Button
+            android:id="@+id/bg"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
