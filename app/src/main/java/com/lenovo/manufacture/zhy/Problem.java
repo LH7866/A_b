@@ -20,6 +20,7 @@ import com.lenovo.manufacture.R;
 import com.lenovo.manufacture.ReUse.MyRe;
 import com.lenovo.manufacture.zhy.Bean.PeopleBean;
 import com.lenovo.manufacture.zhy.Bean.problem;
+import com.lenovo.manufacture.zhy.Bean.salave;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +35,7 @@ import java.util.TimerTask;
 public class Problem extends AppCompatActivity implements View.OnClickListener {
     private TableLayout tableLayout;
     private ImageView back;
-
+    List<salave> q=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +82,7 @@ public class Problem extends AppCompatActivity implements View.OnClickListener {
     private void getStuLine() {
         HashMap<String, String> r1 = new HashMap<>();
         MyRe.re(r1, "/dataInterface/UserProductionLine/getInfo");
-        r1.put("id","" );
+        r1.put("id","");
         new Timer().schedule(new TimerTask() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override

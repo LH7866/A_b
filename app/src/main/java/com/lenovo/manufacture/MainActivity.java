@@ -16,6 +16,7 @@ import com.lenovo.manufacture.czx.Item2Activity;
 import com.lenovo.manufacture.czx.Item6Activity;
 import com.lenovo.manufacture.zhy.Market;
 import com.lenovo.manufacture.zhy.Problem;
+import com.lenovo.manufacture.zhy.Shop;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -139,9 +140,9 @@ public class MainActivity extends AppCompatActivity {
 //                case 7:
 //                    intent.setClass(mActivity, Item7Activity.class);
 //                    break;
-//                case 8:
-//                    intent.setClass(mActivity, Item8Activity.class);
-//                    break;
+              case 8:
+                   intent.setClass(mActivity, Shop.class);
+                  break;
                 default:
                     break;
             }

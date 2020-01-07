@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -44,7 +45,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
        private ScrollView scrollView;
        private TableLayout tableRow;
        List<PeopleBean> list=new ArrayList<>();
-       int select=0;//默认为升序
+       String s,x;
 
 
     @Override
@@ -118,6 +119,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
         down.setOnClickListener(this);
         scrollView=findViewById(R.id.sv_1);
         tableRow=findViewById(R.id.tl_1);
+
     }
     @Override
     public void onClick(View v) {
@@ -129,11 +131,9 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
                 startActivity(intent);
                 break;
             case  R.id.iv_type:
-                up.setImageResource(R.drawable.triangle0002);
                 getData();
                 break;
             case  R.id.iv_pay:
-                down.setImageResource(R.drawable.triangle0001);
                 getData();
                 break;
         }
@@ -171,5 +171,24 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
             tableRow.addView (view1);
         }
     }
+public  void hu(ImageView up,ImageView down){
+    Drawable.ConstantState t=up.getDrawable().getCurrent().getConstantState();
+    Drawable.ConstantState tt=down.getDrawable().getCurrent().getConstantState();
+    Drawable.ConstantState t1=getDrawable(R.drawable.triangle0001).getConstantState();
+    Drawable.ConstantState t2=getDrawable(R.drawable.triangle0002).getConstantState();
+    Drawable.ConstantState t3=getDrawable(R.drawable.triangle0003).getConstantState();
+    Drawable.ConstantState t4=getDrawable(R.drawable.triangle0004).getConstantState();
+    if(t.equals(t1)||t.equals(t4)){
+        x="1";
+        up.setImageResource(R.drawable.triangle0003);
+    }else {
+        x="0";
+        up.setImageResource(R.drawable.triangle0001);
+    }if (tt.equals(t1)){
+        down.setImageResource(R.drawable.triangle0004);
+    }else  if (tt.equals(t3)){
+        down.setImageResource(R.drawable.triangle0002);
+    }
 
+}
 }

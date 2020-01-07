@@ -109,7 +109,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
-                        android:src="@drawable/triangle0003" />
+                        android:src="@drawable/triangle0002" />
                 </LinearLayout>
             </TableRow>
             <ScrollView
