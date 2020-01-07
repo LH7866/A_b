@@ -133,12 +133,12 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
             case  R.id.iv_type:
                 hu(up,down);
                 a="0";
-                getData();
+
                 break;
             case  R.id.iv_pay:
                 hu(up,down);
                 b="1";
-                getData();
+
                 break;
         }
     }
