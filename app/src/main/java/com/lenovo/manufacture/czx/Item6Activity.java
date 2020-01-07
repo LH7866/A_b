@@ -74,7 +74,6 @@ public class Item6Activity extends AppCompatActivity implements View.OnClickList
                         if (j.getString("message").equals("SUCCESS")) {
                             JSONArray data = j.getJSONArray("data");
                             for (int i=0; i<=data.length(); i++) {
-
                                 JSONObject js = data.getJSONObject(i);
                                 int position = js.getInt("position");
 //                                Log.d("sss",position+"");

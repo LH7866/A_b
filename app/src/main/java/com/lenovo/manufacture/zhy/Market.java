@@ -45,7 +45,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
        private ScrollView scrollView;
        private TableLayout tableRow;
        List<PeopleBean> list=new ArrayList<>();
-       String s,x;
+       String a,b;
 
 
     @Override
@@ -131,9 +131,13 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
                 startActivity(intent);
                 break;
             case  R.id.iv_type:
+                hu(up,down);
+                a="0";
                 getData();
                 break;
             case  R.id.iv_pay:
+                hu(up,down);
+                b="1";
                 getData();
                 break;
         }
@@ -159,7 +163,40 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
 //                }
 //            });
 //        }
-
+        if (a.equals("0")){
+            if(b.equals("0")){
+                list.sort(new Comparator<PeopleBean>() {
+                    @Override
+                    public int compare(PeopleBean o1, PeopleBean o2) {
+                        return o1.getStatus().compareTo(o2.getStatus());
+                    }
+                });
+            }else {
+                list.sort(new Comparator<PeopleBean>() {
+                    @Override
+                    public int compare(PeopleBean o1, PeopleBean o2) {
+                        return  o2.getStatus().compareTo(o1.getStatus());
+                    }
+                });
+            }
+        }else {
+            if (a.equals("0")){
+                list.sort(new Comparator<PeopleBean>() {
+                    @Override
+                    public int compare(PeopleBean o1, PeopleBean o2) {
+                        Integer.valueOf(o1.getGold());
+                        return Integer.valueOf(o1.getGold()).compareTo(Integer.valueOf(o2.getGold()));
+                    }
+                });
+            }else {
+                list.sort(new Comparator<PeopleBean>() {
+                    @Override
+                    public int compare(PeopleBean o1, PeopleBean o2) {
+                        return Integer.valueOf(o2.getGold()).compareTo(Integer.valueOf(o1.getGold()));
+                    }
+                });
+            }
+        }
         for (PeopleBean bean :i) {
             View view1 = View.inflate (Market.this, R.layout.table_item, null);
             TextView textView1 = view1.findViewById (R.id.tv_1);
@@ -179,12 +216,12 @@ public  void hu(ImageView up,ImageView down){
     Drawable.ConstantState t3=getDrawable(R.drawable.triangle0003).getConstantState();
     Drawable.ConstantState t4=getDrawable(R.drawable.triangle0004).getConstantState();
     if(t.equals(t1)||t.equals(t4)){
-        x="1";
+        a="1";
         up.setImageResource(R.drawable.triangle0003);
     }else {
-        x="0";
+        a="0";
         up.setImageResource(R.drawable.triangle0001);
-    }if (tt.equals(t1)){
+    }if (tt.equals(t2)){
         down.setImageResource(R.drawable.triangle0004);
     }else  if (tt.equals(t3)){
         down.setImageResource(R.drawable.triangle0002);
