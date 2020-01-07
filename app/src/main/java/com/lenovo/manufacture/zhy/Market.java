@@ -144,15 +144,15 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
     public void addView(List<PeopleBean> i){
         tableRow.removeAllViews();
 //        List<PeopleBean> q=new ArrayList<>();
-//        if (i.equals(0)) {
-//            q.sort(new Comparator<PeopleBean>() {
+//        if(i.equals(0)) {
+//            list.sort(new Comparator<PeopleBean>() {
 //                @Override
 //                public int compare(PeopleBean o1, PeopleBean o2) {
 //                    return o1.getGold().compareTo(o2.getGold());
 //                }
 //            });
 //        }else {
-//            q.sort(new Comparator<PeopleBean>() {
+//            list.sort(new Comparator<PeopleBean>() {
 //                @Override
 //                public int compare(PeopleBean o1, PeopleBean o2) {
 //                    return o2.getGold().compareTo(o1.getGold());

@@ -17,17 +17,17 @@ public class problem {
          * userProductionLineId : 2438
          */
         private String id;
-        private int userProductionLineId;
+        private String userProductionLineId;
         public String getId(String id) {
             return this.id;
         }
         public void setId(String id) {
             this.id = id;
         }
-        public int getUserProductionLineId(String userProductionLineId) {
+        public String getUserProductionLineId(String userProductionLineId) {
             return this.userProductionLineId;
         }
-        public void setUserProductionLineId(int userProductionLineId) {
+        public void setUserProductionLineId(String userProductionLineId) {
             this.userProductionLineId = userProductionLineId;
         }
     }
