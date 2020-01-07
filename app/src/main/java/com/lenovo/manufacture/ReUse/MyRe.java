@@ -1,5 +1,7 @@
 package com.lenovo.manufacture.ReUse;
 
+import android.os.Message;
+
 import org.json.JSONObject;
 
 import java.util.Map;
@@ -43,5 +45,11 @@ public class MyRe {
         });
 
         return jsonObject;
+    }
+    public static Message getMessage(int what, Object obj){
+        Message message = new Message();
+        message.what = what;
+        message.obj = obj;
+        return message;
     }
 }
