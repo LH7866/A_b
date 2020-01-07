@@ -45,7 +45,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
        private ScrollView scrollView;
        private TableLayout tableRow;
        List<PeopleBean> list=new ArrayList<>();
-       String a,b;
+       String a="0",b="1";
 
 
     @Override
@@ -137,7 +137,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
                 break;
             case  R.id.iv_pay:
                 hu(up,down);
-                b="1";
+                a="1";
 
                 break;
         }
@@ -164,7 +164,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
 //            });
 //        }
         if (a.equals("0")){
-            if(b.equals("0")){
+            if(b.equals("1")){
                 list.sort(new Comparator<PeopleBean>() {
                     @Override
                     public int compare(PeopleBean o1, PeopleBean o2) {
@@ -216,15 +216,15 @@ public  void hu(ImageView up,ImageView down){
     Drawable.ConstantState t3=getDrawable(R.drawable.triangle0003).getConstantState();
     Drawable.ConstantState t4=getDrawable(R.drawable.triangle0004).getConstantState();
     if(t.equals(t1)||t.equals(t4)){
-        a="1";
-        up.setImageResource(R.drawable.triangle0003);
+        b="0";
+        up.setImageResource(R.drawable.triangle0002);
     }else {
-        a="0";
+        b="1";
         up.setImageResource(R.drawable.triangle0001);
-    }if (tt.equals(t2)){
+    }if (tt.equals(t2)||tt.equals(t3)){
+        down.setImageResource(R.drawable.triangle0003);
+    }else  {
         down.setImageResource(R.drawable.triangle0004);
-    }else  if (tt.equals(t3)){
-        down.setImageResource(R.drawable.triangle0002);
     }
 
 }
