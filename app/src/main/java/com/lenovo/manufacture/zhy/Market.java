@@ -192,6 +192,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
                 list.sort(new Comparator<PeopleBean>() {
                     @Override
                     public int compare(PeopleBean o1, PeopleBean o2) {
+                        Integer.valueOf(o2.getGold());
                         return Integer.valueOf(o2.getGold()).compareTo(Integer.valueOf(o1.getGold()));
                     }
                 });
