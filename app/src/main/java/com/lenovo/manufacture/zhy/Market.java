@@ -48,7 +48,6 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
        private Timer t = new Timer();
        String a="1",b="1";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +58,6 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
 
     //获取数据
     private void getData() {
-        list=new ArrayList<>();
         HashMap<String,String> r=new HashMap<>();
         MyRe.re(r,"/dataInterface/People/getAll");
         t.schedule(new TimerTask() {
@@ -67,6 +65,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
             @Override
             public void run() {
                 JSONObject j = MyRe.re(r, "/dataInterface/People/getAll");
+                list=new ArrayList<>();
                 if (j !=null) {
                     try {
 
@@ -88,7 +87,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
                     }
                 }
             }
-        },0,1200);
+        },0,10000);
     }
 
     public void send(int what,Object obj){
@@ -105,8 +104,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
             super.handleMessage(msg);
             switch (msg.what){
                 case 1:
-                    addView(list);
-                    t.cancel();
+                    addView();
                     break;
             }
         }
@@ -124,6 +122,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
         tableRow=findViewById(R.id.tl_1);
 
     }
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -136,81 +135,70 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
             case  R.id.iv_type:
                 hu(up,down);
                 a="1";
+                addView();
                 break;
             case  R.id.iv_pay:
                 hu(down,up);
-                a="1";
+                a="2";
+                addView();
                 break;
         }
     }
 
     //动态加表格
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void addView(List<PeopleBean> i){
+    public void addView(){
         tableRow.removeAllViews();
-//        List<PeopleBean> q=new ArrayList<>();
-//        if(i.equals(0)) {
-//            list.sort(new Comparator<PeopleBean>() {
-//                @Override
-//                public int compare(PeopleBean o1, PeopleBean o2) {
-//                    return o1.getGold().compareTo(o2.getGold());
-//                }
-//            });
-//        }else {
-//            list.sort(new Comparator<PeopleBean>() {
-//                @Override
-//                public int compare(PeopleBean o1, PeopleBean o2) {
-//                    return o2.getGold().compareTo(o1.getGold());
-//                }
-//            });
-//        }
-        if (a.equals("1")){
-            if(b.equals("2")){
-                list.sort(new Comparator<PeopleBean>() {
-                    @Override
-                    public int compare(PeopleBean o1, PeopleBean o2) {
-                        return o1.getStatus().compareTo(o2.getStatus());
-                    }
-                });
+        if (list!=null){
+            if (a.equals("1")){
+                if(b.equals("1")){
+                    list.sort(new Comparator<PeopleBean>() {
+                        @Override
+                        public int compare(PeopleBean o1, PeopleBean o2) {
+                            return o1.getStatus().compareTo(o2.getStatus());
+                        }
+                    });
+                }else {
+                    list.sort(new Comparator<PeopleBean>() {
+                        @Override
+                        public int compare(PeopleBean o1, PeopleBean o2) {
+                            return  o2.getStatus().compareTo(o1.getStatus());
+                        }
+                    });
+                }
             }else {
-                list.sort(new Comparator<PeopleBean>() {
-                    @Override
-                    public int compare(PeopleBean o1, PeopleBean o2) {
-                        return  o2.getStatus().compareTo(o1.getStatus());
-                    }
-                });
+                if (b.equals("1")){
+                    list.sort(new Comparator<PeopleBean>() {
+                        @Override
+                        public int compare(PeopleBean o1, PeopleBean o2) {
+                            Integer.valueOf(o1.getGold());
+                            return Integer.valueOf(o1.getGold()).compareTo(Integer.valueOf(o2.getGold()));
+                        }
+                    });
+                }else {
+                    list.sort(new Comparator<PeopleBean>() {
+                        @Override
+                        public int compare(PeopleBean o1, PeopleBean o2) {
+                            return Integer.valueOf(o2.getGold()).compareTo(Integer.valueOf(o1.getGold()));
+                        }
+                    });
+                }
             }
-        }else {
-            if (b.equals("1")){
-                list.sort(new Comparator<PeopleBean>() {
-                    @Override
-                    public int compare(PeopleBean o1, PeopleBean o2) {
-                        Integer.valueOf(o1.getGold());
-                        return Integer.valueOf(o1.getGold()).compareTo(Integer.valueOf(o2.getGold()));
-                    }
-                });
-            }else {
-                list.sort(new Comparator<PeopleBean>() {
-                    @Override
-                    public int compare(PeopleBean o1, PeopleBean o2) {
-                        Integer.valueOf(o2.getGold());
-                        return Integer.valueOf(o2.getGold()).compareTo(Integer.valueOf(o1.getGold()));
-                    }
-                });
+            for (PeopleBean bean :list) {
+                View view1 = View.inflate (Market.this, R.layout.table_item2, null);
+                TextView textView1 = view1.findViewById (R.id.txv_1);
+                TextView textView2 = view1.findViewById (R.id.txv_2);
+                TextView textView3 = view1.findViewById (R.id.txv_3);
+                textView1.setText(bean.getPeopleName());
+                textView2.setText(bean.getStatus());
+                textView3.setText(bean.getGold());
+                tableRow.addView (view1);
             }
         }
-        for (PeopleBean bean :i) {
-            View view1 = View.inflate (Market.this, R.layout.table_item2, null);
-            TextView textView1 = view1.findViewById (R.id.txv_1);
-            TextView textView2 = view1.findViewById (R.id.txv_2);
-            TextView textView3 = view1.findViewById (R.id.txv_3);
-            textView1.setText(bean.getPeopleName());
-            textView2.setText(bean.getStatus());
-            textView3.setText(bean.getGold());
-            tableRow.addView (view1);
-        }
-        list.clear();
     }
+
+
+
 public  void hu(ImageView up,ImageView down){
     Drawable.ConstantState t=up.getDrawable().getCurrent().getConstantState();
     Drawable.ConstantState tt=down.getDrawable().getCurrent().getConstantState();
@@ -219,10 +207,10 @@ public  void hu(ImageView up,ImageView down){
     Drawable.ConstantState t3=getDrawable(R.drawable.triangle0003).getConstantState();
     Drawable.ConstantState t4=getDrawable(R.drawable.triangle0004).getConstantState();
     if(t.equals(t1)||t.equals(t4)){
-        b="1";
+        b="2";
         up.setImageResource(R.drawable.triangle0003);
     }else {
-        b="2";
+        b="1";
         up.setImageResource(R.drawable.triangle0001);
     }if (tt.equals(t2)||tt.equals(t3)){
         down.setImageResource(R.drawable.triangle0002);
