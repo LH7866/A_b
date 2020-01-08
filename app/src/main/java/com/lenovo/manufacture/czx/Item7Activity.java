@@ -28,16 +28,13 @@ import com.lenovo.manufacture.R;
 import com.lenovo.manufacture.ReUse.MyRe;
 import com.lenovo.manufacture.czx.bean.sell;
 
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -61,8 +58,24 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
     private LinearLayout mL2;
     private ScrollView mSv2;
     private Timer t = new Timer();
-    List<sell> list ;
-    int a = 17989;
+    List<sell> list;
+    int a = 0,b = 0,c = 0,i = 1;
+    /**
+     * 18,150,000
+     */
+    private TextView mT4;
+    /**
+     * 120,000元
+     */
+    private TextView mT5;
+    /**
+     * 240,000元
+     */
+    private TextView mT6;
+    /**
+     * 80,000元
+     */
+    private TextView mT7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,25 +90,24 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
     }
 
 
-
     private void initTable() {
-        HashMap<String,String> m = new HashMap<>();
+        HashMap<String, String> m = new HashMap<>();
         t.schedule(new TimerTask() {
             @Override
             public void run() {
                 JSONObject j = MyRe.re(m, "/Interface/index/userSellInfoTEditer");
-                if(j != null) {
+                if (j != null) {
                     try {
                         if (j.getString("message").equals("SUCCESS")) {
                             JSONArray data = j.getJSONArray("data");
 //                            Log.d("ssssdfdf",j.toString());
                             list = new ArrayList<>();
                             for (int i = 0; i < data.length(); i++) {
-                                JSONObject ja =data.getJSONObject(i);
+                                JSONObject ja = data.getJSONObject(i);
                                 Iterator<String> it = ja.keys();
                                 JSONObject v = null;
                                 sell se = null;
-                                while (it.hasNext()){
+                                while (it.hasNext()) {
                                     String key = it.next();
                                     v = ja.getJSONObject(key);
                                     se = new sell();
@@ -107,7 +119,7 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
                                 }
                                 list.add(se);
                             }
-                            send(1,"");
+                            send(1, "");
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -115,7 +127,7 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
                 }
 
             }
-        },0,500);
+        }, 0, 500);
 
     }
 
@@ -124,22 +136,39 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
     public void da(List<sell> l) {
         //清除残留记录
         mTl2.removeAllViews();
-
-        for(sell s : l) {
+        int sum = 0;
+        i++;
+        for (sell s : l) {
             View view = LayoutInflater.from(Item7Activity.this).inflate(R.layout.table_item3, null);
             TextView cN = view.findViewById(R.id.tq_1);
             TextView p = view.findViewById(R.id.tq_2);
             TextView t = view.findViewById(R.id.tq_3);
             TextView n = view.findViewById(R.id.tq_4);
+
             cN.setText(s.getName());
             p.setText(s.getPrice());
-            t.setText(tr(s.getTime())+"");
+            sum = sum + Integer.parseInt(s.getPrice());
+            if(s.getName().equals("SUV汽车") || i==1){
+                a = a +  Integer.parseInt(s.getPrice());
+            }
+            if(s.getName().equals("MPV汽车") || i==1){
+                b = b +  Integer.parseInt(s.getPrice());
+            }
+            if(s.getName().equals("轿车汽车") || i==1){
+                c = c +  Integer.parseInt(s.getPrice());
+            }
+            t.setText(tr(s.getTime()) + "");
             n.setText(s.getNum());
             mTl2.addView(view);
 //            Log.d("sllslslss",tr(s.getTime())+"");
         }
-
+        mT4.setText(sum+"");
+        mT5.setText(a+" 元");
+        mT6.setText(b+" 元");
+        mT7.setText(c+" 元");
+        a = 0;b = 0;c =0;
     }
+
 
     private static String tr(String millSecond) {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -150,10 +179,11 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
 
     private void send(int what, Object obj) {
 
-        Item7Activity.this.handler.sendMessage(MyRe.getMessage(what,obj));
+        Item7Activity.this.handler.sendMessage(MyRe.getMessage(what, obj));
 
     }
-    Handler handler = new Handler(){
+
+    Handler handler = new Handler() {
 
         @RequiresApi(api = Build.VERSION_CODES.M)
         @Override
@@ -251,6 +281,10 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
         mTl2 = (TableLayout) findViewById(R.id.tl2);
         mL2 = (LinearLayout) findViewById(R.id.li2);
         mSv2 = (ScrollView) findViewById(R.id.sv2);
+        mT4 = (TextView) findViewById(R.id.t4);
+        mT5 = (TextView) findViewById(R.id.t5);
+        mT6 = (TextView) findViewById(R.id.t6);
+        mT7 = (TextView) findViewById(R.id.t7);
     }
 
     @Override

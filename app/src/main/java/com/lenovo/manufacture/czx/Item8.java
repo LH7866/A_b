@@ -1,6 +1,7 @@
 package com.lenovo.manufacture.czx;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -127,9 +128,10 @@ public class Item8 extends AppCompatActivity implements View.OnClickListener {
             default:
                 break;
             case R.id.bg:
-
                 break;
             case R.id.iv_shopping1:
+             Intent intent = new Intent(this,Shopping.class);
+                startActivity(intent);
                 break;
             case R.id.iy:
                 a="0";
@@ -144,6 +146,7 @@ public class Item8 extends AppCompatActivity implements View.OnClickListener {
     //动态加表格
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void addView(List<ShopBean> i) {
+        int x = 1;
         //清除残余表格
         tableRow.removeAllViews();
         if(b == "1") {
@@ -174,8 +177,26 @@ public class Item8 extends AppCompatActivity implements View.OnClickListener {
             textView4.setText(shopBean.getPrice());
             textView5.setText(shopBean.getNum());
             tableRow.addView(view1);
+            int as = xjb(shopBean.getPrice(),shopBean.getNum(),x);
+            Log.d("SODSJID",as+"");
+            x++;
         }
         list.clear();
+    }
+
+    //性价比
+    private int xjb(String p ,String n,int x) {
+        int y = 300;
+        int z = 0 ;
+        int a = Integer.parseInt(p)/Integer.parseInt(n);//200
+        if(x>0){
+            if(a<y){
+                 z = a;
+            }else{
+                z = y ;
+            }
+        }
+        return z ;
     }
 
     private void initView() {

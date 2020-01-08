@@ -43,9 +43,7 @@
                     android:text="18,150,000"
                     android:textStyle="bold"
                     android:textColor="#000"
-                    android:textSize="30sp" />
-
-
+                    android:textSize="40sp" />
             </LinearLayout>
 
 
@@ -88,7 +86,7 @@
                     <TextView
                         android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:text="大众汽车价格"
+                        android:text="SUV价格"
                         android:textColor="#000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -128,7 +126,7 @@
                     <TextView
                         android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:text="吉普汽车价格"
+                        android:text="MPV汽车价格"
                         android:textColor="#000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -168,7 +166,7 @@
                     <TextView
                         android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:text="蓝色汽车价格"
+                        android:text="轿车汽车价格"
                         android:textColor="#000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -351,13 +349,6 @@
             </ScrollView>
 
         </LinearLayout>
-
-        <!--            <WebView-->
-        <!--                android:id="@+id/w1"-->
-        <!--                android:layout_margin="20dp"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="match_parent" />-->
-
 
 
     </LinearLayout>
