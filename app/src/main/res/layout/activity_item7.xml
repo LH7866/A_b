@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:background="@color/cardview_light_background"
-                android:layout_weight="1">
+                android:layout_weight="1.2">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                     android:text="18,150,000"
                     android:textStyle="bold"
                     android:textColor="#000"
-                    android:textSize="35sp" />
+                    android:textSize="30sp" />
 
 
             </LinearLayout>
@@ -53,7 +53,7 @@
                 android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1.5"
+                android:layout_weight="1.7"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -80,7 +80,7 @@
                         android:text="120,000元"
                         android:textStyle="bold"
                         android:textColor="#000"
-                        android:textSize="35sp"
+                        android:textSize="30sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -120,7 +120,7 @@
                         android:text="240,000元"
                         android:textStyle="bold"
                         android:textColor="#000"
-                        android:textSize="35sp"
+                        android:textSize="30sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -160,7 +160,7 @@
                         android:text="80,000元"
                         android:textStyle="bold"
                         android:textColor="#000"
-                        android:textSize="35sp"
+                        android:textSize="30sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -185,7 +185,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:background="@color/cardview_light_background"
-                android:layout_weight="5">
+                android:layout_weight="4.5">
 
                 <LinearLayout
                     android:layout_marginTop="50dp"
@@ -234,7 +234,7 @@
                     android:gravity="center"
                     android:textColor="#000"
                     android:textStyle="bold"
-                    android:textSize="18sp"/>
+                    android:textSize="16sp"/>
 
 
                 <LinearLayout
@@ -245,22 +245,23 @@
                     android:layout_height="wrap_content">
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_weight="2"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:layout_weight="2"
+                        android:layout_weight="1"
                         android:layout_width="0dp"
                         android:gravity="center"
                         android:layout_height="wrap_content"
                         android:text="价格"
                         android:textColor="#000"
                         android:textStyle="bold"
-                        android:textSize="18sp"/>
+                        android:textSize="16sp"/>
 
-                    <Spinner
-                        android:layout_weight="2"
+                    <ImageView
+                        android:layout_weight="1"
                         android:id="@+id/sp1"
                         android:layout_width="0dp"
+                        android:src="@drawable/triangle0002"
                         android:layout_height="10dp"
                         android:layout_marginTop="6dp" />
 
@@ -285,12 +286,13 @@
                         android:text="卖出时间"
                         android:textColor="#000"
                         android:textStyle="bold"
-                        android:textSize="18sp"/>
+                        android:textSize="16sp"/>
 
-                    <Spinner
+                    <ImageView
                         android:id="@+id/sp2"
                         android:layout_width="0dp"
                         android:layout_weight="1"
+                        android:src="@drawable/triangle0002"
                         android:layout_height="10dp"
                         android:layout_marginTop="6dp" />
                 </LinearLayout>
@@ -314,13 +316,14 @@
                         android:gravity="center"
                         android:text="卖出数量"
                         android:textColor="#000"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <Spinner
+                    <ImageView
                         android:id="@+id/sp3"
                         android:layout_width="0dp"
                         android:layout_height="10dp"
+                        android:src="@drawable/triangle0002"
                         android:layout_marginTop="6dp"
                         android:layout_weight="1" />
 

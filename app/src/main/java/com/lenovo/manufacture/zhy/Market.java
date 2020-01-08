@@ -45,6 +45,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
        private ScrollView scrollView;
        private TableLayout tableRow;
        List<PeopleBean> list;
+       private Timer t = new Timer();
        String a="1",b="1";
 
 
@@ -53,6 +54,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_market);
         init();
+        getData();
     }
 
     //获取数据
@@ -60,7 +62,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
         list=new ArrayList<>();
         HashMap<String,String> r=new HashMap<>();
         MyRe.re(r,"/dataInterface/People/getAll");
-        new Timer().schedule(new TimerTask() {
+        t.schedule(new TimerTask() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void run() {
@@ -86,7 +88,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
                     }
                 }
             }
-        },0,120000);
+        },0,1200);
     }
 
     public void send(int what,Object obj){
@@ -104,6 +106,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
             switch (msg.what){
                 case 1:
                     addView(list);
+                    t.cancel();
                     break;
             }
         }
@@ -133,12 +136,10 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
             case  R.id.iv_type:
                 hu(up,down);
                 a="1";
-                getData();
                 break;
             case  R.id.iv_pay:
                 hu(down,up);
                 a="1";
-                getData();
                 break;
         }
     }
@@ -180,7 +181,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
                 });
             }
         }else {
-            if (a.equals("1")){
+            if (b.equals("1")){
                 list.sort(new Comparator<PeopleBean>() {
                     @Override
                     public int compare(PeopleBean o1, PeopleBean o2) {
@@ -192,6 +193,7 @@ public class Market extends AppCompatActivity implements View.OnClickListener{
                 list.sort(new Comparator<PeopleBean>() {
                     @Override
                     public int compare(PeopleBean o1, PeopleBean o2) {
+                        Integer.valueOf(o2.getGold());
                         return Integer.valueOf(o2.getGold()).compareTo(Integer.valueOf(o1.getGold()));
                     }
                 });

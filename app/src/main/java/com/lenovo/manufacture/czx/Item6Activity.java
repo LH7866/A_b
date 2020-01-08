@@ -98,7 +98,7 @@ public class Item6Activity extends AppCompatActivity implements View.OnClickList
                 }
 
             }
-        },0,100);
+        },0,1000);
 
     }
     private void send(int what, Object obj) {
@@ -129,7 +129,6 @@ public class Item6Activity extends AppCompatActivity implements View.OnClickList
                     mIm4.setForeground(getDrawable(R.color.cardview_shadow_end_color));
                     break;
                 default:
-
                     break;
 
             }

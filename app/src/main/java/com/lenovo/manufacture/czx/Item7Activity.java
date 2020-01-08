@@ -32,7 +32,12 @@ import com.lenovo.manufacture.czx.bean.sell;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -56,7 +61,8 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
     private LinearLayout mL2;
     private ScrollView mSv2;
     private Timer t = new Timer();
-    ArrayList<sell> list ;
+    List<sell> list ;
+    int a = 17989;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,62 +83,69 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
         t.schedule(new TimerTask() {
             @Override
             public void run() {
-                JSONObject j = MyRe.re(m,"/Interface/index/userSellInfoTEditer");
-                Log.d("sss",j+"");
-                try {
-                    if (j.getString("message").equals("SUCCESS")){
-                        JSONArray data = j.getJSONArray("data");
-                        list = new ArrayList<>();
-                        for (int i=0; i<data.length(); i++) {
-                            JSONObject ja = data.getJSONObject(i);
-//                            Log.d("aaaaaaaaaaa",ja+"");
-                            Iterator<String> it = ja.keys();
-                            JSONObject v = null;
-                            sell se = null;
-                            while (it.hasNext()){
-                                String key = it.next();
-                                v = ja.getJSONObject(key);
-                                 se = new sell();
-                                se.setName(v.getString("carTypeName"));
-                                se.setPrice(v.getString("price"));
-                                se.setTime(v.getString("time"));
-                                se.setNum(v.getString("num"));
-                                
+                JSONObject j = MyRe.re(m, "/Interface/index/userSellInfoTEditer");
+                if(j != null) {
+                    try {
+                        if (j.getString("message").equals("SUCCESS")) {
+                            JSONArray data = j.getJSONArray("data");
+//                            Log.d("ssssdfdf",j.toString());
+                            list = new ArrayList<>();
+                            for (int i = 0; i < data.length(); i++) {
+                                JSONObject ja =data.getJSONObject(i);
+                                Iterator<String> it = ja.keys();
+                                JSONObject v = null;
+                                sell se = null;
+                                while (it.hasNext()){
+                                    String key = it.next();
+                                    v = ja.getJSONObject(key);
+                                    se = new sell();
+                                    se.setName(v.getString("carTypeName"));
+                                    se.setPrice(v.getString("price"));
+                                    se.setTime(v.getString("time"));
+                                    se.setNum(v.getString("num"));
+
+                                }
+                                list.add(se);
                             }
-                            list.add(se);
                             send(1,"");
                         }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
 
-
             }
-        },0,1500);
+        },0,500);
 
     }
 
     //动态添加表格
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void da(ArrayList<sell> l) {
+    public void da(List<sell> l) {
         //清除残留记录
         mTl2.removeAllViews();
 
-//        for(sell s : l) {
-//            View view = LayoutInflater.from(Item7Activity.this).inflate(R.layout.table_item, null);
-//            TextView cN = view.findViewById(R.id.tv_1);
-//            TextView p = view.findViewById(R.id.tv_2);
-//            TextView t = view.findViewById(R.id.tv_3);
-//            TextView n = view.findViewById(R.id.tv_4);
-//            cN.setText(s.getName());
-//            p.setText(s.getPrice());
-//            t.setText(s.getTime());
-//            n.setText(s.getNum());
-//            mTl2.addView(view);
-////            Log.d("sllslslss",s.getName());
-//        }
+        for(sell s : l) {
+            View view = LayoutInflater.from(Item7Activity.this).inflate(R.layout.table_item3, null);
+            TextView cN = view.findViewById(R.id.tq_1);
+            TextView p = view.findViewById(R.id.tq_2);
+            TextView t = view.findViewById(R.id.tq_3);
+            TextView n = view.findViewById(R.id.tq_4);
+            cN.setText(s.getName());
+            p.setText(s.getPrice());
+            t.setText(tr(s.getTime())+"");
+            n.setText(s.getNum());
+            mTl2.addView(view);
+//            Log.d("sllslslss",tr(s.getTime())+"");
+        }
 
+    }
+
+    private static String tr(String millSecond) {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(Long.parseLong(millSecond));
+        return formatter.format(calendar.getTime());
     }
 
     private void send(int what, Object obj) {
@@ -149,6 +162,7 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
             switch (msg.what) {
                 case 1:
                     da(list);
+                    t.cancel();
                 default:
                     break;
 

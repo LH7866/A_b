@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TableRow android:background="#f3f3f3" android:layout_margin="1dp" >
+            <TextView android:layout_height="match_parent" android:width="0dp" android:layout_weight="1" android:text="aaa" android:gravity="center" android:layout_margin="1.5dp" android:background="#fff" android:id="@+id/tq_1"/>
+            <TextView android:layout_height="match_parent" android:width="0dp" android:layout_weight="1" android:text="bbb" android:gravity="center" android:layout_margin="1.5dp" android:background="#fff" android:id="@+id/tq_2"/>
+            <TextView android:layout_height="match_parent" android:width="0dp" android:layout_weight="1" android:text="ccc" android:gravity="center" android:layout_margin="1.5dp" android:background="#fff" android:id="@+id/tq_3"/>
+            <TextView android:layout_height="match_parent" android:width="0dp" android:layout_weight="1" android:text="ccc" android:gravity="center" android:layout_margin="1.5dp" android:background="#fff" android:id="@+id/tq_4"/>
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

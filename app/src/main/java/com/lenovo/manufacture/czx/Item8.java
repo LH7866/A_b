@@ -36,6 +36,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Item8 extends AppCompatActivity implements View.OnClickListener {
     private ScrollView scrollView;
     private TableLayout tableRow;
+    private Timer t = new Timer();
     private Button mbg;
     List<ShopBean> list = new ArrayList<>();
     String a , b= "1";
@@ -50,14 +51,14 @@ public class Item8 extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_item8);
         initView();
         init();
-
+        getData();
     }
 
     //获取数据
     private void getData() {
         HashMap<String, String> r = new HashMap<>();
         MyRe.re(r, "/Interface/index/getMaterial");
-        new Timer().schedule(new TimerTask() {
+        t.schedule(new TimerTask() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void run() {
@@ -78,6 +79,7 @@ public class Item8 extends AppCompatActivity implements View.OnClickListener {
                                 list.add(sb);
                             }
                             send(1, "");
+
                         }
 
                     } catch (Exception e) {
@@ -85,7 +87,8 @@ public class Item8 extends AppCompatActivity implements View.OnClickListener {
                     }
                 }
             }
-        }, 0, 1200000);
+        }, 0, 1200);
+
     }
 
     public void send(int what, Object obj) {
@@ -103,6 +106,7 @@ public class Item8 extends AppCompatActivity implements View.OnClickListener {
             switch (msg.what) {
                 case 1:
                     addView(list);
+                    t.cancel();
                     break;
             }
         }
@@ -123,7 +127,7 @@ public class Item8 extends AppCompatActivity implements View.OnClickListener {
             default:
                 break;
             case R.id.bg:
-                getData();
+
                 break;
             case R.id.iv_shopping1:
                 break;
