@@ -1,7 +1,6 @@
 package com.lenovo.manufacture.zhy.Bean;
 
 public class CardBean {
-
         /**
          * id : 1
          * carName : 轿车汽车
@@ -36,4 +35,5 @@ public class CardBean {
             this.content = content;
         }
     }
+
 
