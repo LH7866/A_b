@@ -1,10 +1,24 @@
-package com.lenovo.manufacture.zhy.Bean;
+package com.lenovo.manufacture.zhy.Bean.four;
 
 public class StuBean {
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
-        /**
+    @Override
+    public String toString() {
+        return "StuBean{" +
+                "productionLineId='" + productionLineId + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
+
+    /**
          * id : 2453
          * userWorkId : 1
          * stageId : 36
@@ -13,8 +27,8 @@ public class StuBean {
          * position : 2
          * isAI : 1
          */
-
         private String productionLineId;
+        private String id;
 
         public String getProductionLineId() {
             return productionLineId;

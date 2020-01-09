@@ -2,7 +2,6 @@ package com.lenovo.manufacture.czx;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,7 +16,7 @@ import android.widget.TextView;
 
 import com.lenovo.manufacture.R;
 import com.lenovo.manufacture.ReUse.MyRe;
-import com.lenovo.manufacture.zhy.Bean.ShopBean;
+import com.lenovo.manufacture.zhy.ShopBean;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

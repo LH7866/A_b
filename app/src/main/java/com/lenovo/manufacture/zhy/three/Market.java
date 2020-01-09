@@ -1,4 +1,4 @@
-package com.lenovo.manufacture.zhy;
+package com.lenovo.manufacture.zhy.three;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -11,20 +11,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lenovo.manufacture.MainActivity;
 import com.lenovo.manufacture.R;
 import com.lenovo.manufacture.ReUse.MyRe;
-import com.lenovo.manufacture.zhy.Bean.PeopleBean;
+import com.lenovo.manufacture.zhy.Bean.three.PeopleBean;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,12 +28,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import static android.widget.Toast.LENGTH_LONG;
 
 //3：人才市场
 public class Market extends AppCompatActivity implements View.OnClickListener{

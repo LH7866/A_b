@@ -1,4 +1,4 @@
-package com.lenovo.manufacture.zhy.Bean;
+package com.lenovo.manufacture.zhy.Bean.three;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

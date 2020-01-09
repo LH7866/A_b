@@ -16,9 +16,9 @@ import com.lenovo.manufacture.czx.Item2Activity;
 import com.lenovo.manufacture.czx.Item6Activity;
 import com.lenovo.manufacture.czx.Item7Activity;
 import com.lenovo.manufacture.czx.Item8;
-import com.lenovo.manufacture.zhy.Market;
-import com.lenovo.manufacture.zhy.Problem;
-import com.lenovo.manufacture.zhy.Shop;
+import com.lenovo.manufacture.zhy.three.Market;
+import com.lenovo.manufacture.zhy.five.Problem;
+import com.lenovo.manufacture.zhy.four.Production;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -129,9 +129,9 @@ public class MainActivity extends AppCompatActivity {
                 case 3:
                     intent.setClass(mActivity, Market.class);
                     break;
-//                case 4:
-//                    intent.setClass(mActivity, Item4Activity.class);
-//                    break;
+                case 4:
+                    intent.setClass(mActivity, Production.class);
+                    break;
                case 5:
                    intent.setClass(mActivity, Problem.class);
                  break;

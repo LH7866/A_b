@@ -1,4 +1,4 @@
-package com.lenovo.manufacture.zhy.Bean;
+package com.lenovo.manufacture.zhy.Bean.four;
 
 public class AlatBean {
     private  String id;

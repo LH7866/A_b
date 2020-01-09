@@ -1,4 +1,4 @@
-package com.lenovo.manufacture.zhy.Bean;
+package com.lenovo.manufacture.zhy.Bean.four;
 
 public class ProductLine {
         /**
@@ -17,7 +17,17 @@ public class ProductLine {
             return id;
         }
 
-        public void setId(String id) {
+    @Override
+    public String toString() {
+        return "ProductLine{" +
+                "id='" + id + '\'' +
+                ", productionLineName='" + productionLineName + '\'' +
+                ", content='" + content + '\'' +
+                ", carId='" + carId + '\'' +
+                '}';
+    }
+
+    public void setId(String id) {
             this.id = id;
         }
 

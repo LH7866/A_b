@@ -1,6 +1,8 @@
-package com.lenovo.manufacture.zhy.Bean;
+package com.lenovo.manufacture.zhy;
 
 public class ShopBean {
+
+
         /**
          * id : 26
          * materialName : MPV方向盘
@@ -134,3 +136,4 @@ public class ShopBean {
             this.supplyListId = supplyListId;
         }
     }
+
