@@ -12,11 +12,14 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
+import com.lenovo.manufacture.b.Main2Activity;
+import com.lenovo.manufacture.b.Main3Activity;
+import com.lenovo.manufacture.b.Main4Activity;
+import com.lenovo.manufacture.b.Main6Activity;
 import com.lenovo.manufacture.czx.Item2Activity;
 import com.lenovo.manufacture.czx.Item6Activity;
 import com.lenovo.manufacture.czx.Item7Activity;
 import com.lenovo.manufacture.czx.Item8;
-import com.lenovo.manufacture.zhy.three.Market;
 import com.lenovo.manufacture.zhy.five.Problem;
 import com.lenovo.manufacture.zhy.four.Production;
 
@@ -127,16 +130,16 @@ public class MainActivity extends AppCompatActivity {
                     intent.setClass(mActivity, Item2Activity.class);
                     break;
                 case 3:
-                    intent.setClass(mActivity, Market.class);
+                    intent.setClass(mActivity, Main2Activity.class);// b2
                     break;
                 case 4:
-                    intent.setClass(mActivity, Production.class);
+                    intent.setClass(mActivity, Main3Activity.class); // b3
                     break;
                case 5:
-                   intent.setClass(mActivity, Problem.class);
+                   intent.setClass(mActivity, Main4Activity.class);  //
                  break;
                 case 6:
-                    intent.setClass(mActivity, Item6Activity.class);
+                    intent.setClass(mActivity, Main6Activity.class); // b6
                  break;
                 case 7:
                     intent.setClass(mActivity, Item7Activity.class);

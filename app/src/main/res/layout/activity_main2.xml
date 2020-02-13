@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".b.Main2Activity"
+    android:orientation="vertical"
+    android:background="@color/cardview_shadow_start_color">
+
+    <include layout="@layout/include_bar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:layout_marginTop="450dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="vertical"
+                android:background="#FF5858">
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:text="环境温度"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    />
+
+                <TextView
+                    android:id="@+id/t2"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:textColor="#000"
+                    android:text="21.3℃"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="vertical"
+                android:background="#82AAFF">
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:text="车间温度"
+                    android:textSize="20sp"
+                    android:textColor="#000"
+                    />
+
+                <TextView
+                    android:id="@+id/t3"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:textColor="#000"
+                    android:text="32.6℃"
+                    android:textSize="30sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="590dp"
+                android:layout_gravity="center"
+                android:layout_margin="40dp"
+                android:background="@color/cardview_light_background" >
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:layout_margin="10dp"
+                    android:id="@+id/lc"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

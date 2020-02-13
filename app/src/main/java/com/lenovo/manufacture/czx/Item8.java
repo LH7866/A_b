@@ -38,7 +38,7 @@ public class Item8 extends AppCompatActivity implements View.OnClickListener {
     private TableLayout tableRow;
     private Timer t = new Timer();
     private Button mbg;
-    List<ShopBean> list = new ArrayList<>();
+    List<ShopBean> list8 = new ArrayList<>();
     String a , b= "1";
     private ImageView mIvShopping1;
     private ImageView mIy;
@@ -76,7 +76,7 @@ public class Item8 extends AppCompatActivity implements View.OnClickListener {
                                 sb.setContent(js.getString("content"));
                                 sb.setPrice(js.getString("price"));
                                 sb.setNum(js.getString("num"));
-                                list.add(sb);
+                                list8.add(sb);
                             }
                             send(1, "");
 
@@ -105,7 +105,7 @@ public class Item8 extends AppCompatActivity implements View.OnClickListener {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 1:
-                    addView(list);
+                    addView(list8);
                     t.cancel();
                     break;
             }
@@ -149,14 +149,14 @@ public class Item8 extends AppCompatActivity implements View.OnClickListener {
         //清除残余表格
         tableRow.removeAllViews();
         if(b == "1") {
-            list.sort(new Comparator<ShopBean>() {
+            list8.sort(new Comparator<ShopBean>() {
                 @Override
                 public int compare(ShopBean t1, ShopBean t2) {
                     return Integer.valueOf(t2.getNum()).compareTo(Integer.valueOf(t1.getNum()));
                 }
             });
         }else{
-            list.sort(new Comparator<ShopBean>() {
+            list8.sort(new Comparator<ShopBean>() {
                 @Override
                 public int compare(ShopBean t1, ShopBean t2) {
                     return Integer.valueOf(t1.getNum()).compareTo(Integer.valueOf(t2.getNum()));
@@ -176,11 +176,11 @@ public class Item8 extends AppCompatActivity implements View.OnClickListener {
             textView4.setText(shopBean.getPrice());
             textView5.setText(shopBean.getNum());
             tableRow.addView(view1);
-            int as = xjb(shopBean.getPrice(),shopBean.getNum(),x);
-            Log.d("SODSJID",as+"");
-            x++;
+//            int as = xjb(shopBean.getPrice(),shopBean.getNum(),x);
+//            Log.d("SODSJID",as+"");
+//            x++;
         }
-        list.clear();
+        list8.clear();
     }
 
     //性价比

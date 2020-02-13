@@ -202,6 +202,7 @@ public class Problem extends AppCompatActivity implements View.OnClickListener {
             public void run() {
                 super.run();
                 try {
+
                     Thread.sleep(5000);
                     new Timer().schedule(new TimerTask() {
                         @RequiresApi(api = Build.VERSION_CODES.N)
