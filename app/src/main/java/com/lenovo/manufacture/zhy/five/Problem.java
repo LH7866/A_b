@@ -318,8 +318,7 @@ public class Problem extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back:
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                finish();
                 break;
         }
     }

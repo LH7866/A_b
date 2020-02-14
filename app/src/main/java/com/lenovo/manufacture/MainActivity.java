@@ -12,6 +12,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
+import com.lenovo.manufacture.b.Activity_Bitem7;
 import com.lenovo.manufacture.b.Main2Activity;
 import com.lenovo.manufacture.b.Main3Activity;
 import com.lenovo.manufacture.b.Main4Activity;
@@ -22,6 +23,7 @@ import com.lenovo.manufacture.czx.Item7Activity;
 import com.lenovo.manufacture.czx.Item8;
 import com.lenovo.manufacture.zhy.five.Problem;
 import com.lenovo.manufacture.zhy.four.Production;
+import com.lenovo.manufacture.zhy.three.Market;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -125,28 +127,52 @@ public class MainActivity extends AppCompatActivity {
                 case 1:
                     intent.setClass(mActivity, TestActivity.class);
                     break;
-
                 case 2:
                     intent.setClass(mActivity, Item2Activity.class);
                     break;
                 case 3:
-                    intent.setClass(mActivity, Main2Activity.class);// b2
+                    intent.setClass(mActivity, Market.class);// b2
                     break;
                 case 4:
-                    intent.setClass(mActivity, Main3Activity.class); // b3
+                    intent.setClass(mActivity, Production.class); // b3
                     break;
-               case 5:
-                   intent.setClass(mActivity, Main4Activity.class);  //
-                 break;
+                    case 5:
+                   intent.setClass(mActivity, Problem.class);  //
+                    break;
                 case 6:
-                    intent.setClass(mActivity, Main6Activity.class); // b6
-                 break;
+                    intent.setClass(mActivity, Item6Activity.class); // b6
+                    break;
                 case 7:
                     intent.setClass(mActivity, Item7Activity.class);
                     break;
-               case 8:
+                case 8:
                   intent.setClass(mActivity, Item8.class);
-                 break;
+                    break;
+                case 9:
+                    intent.setClass(mActivity, TestActivity.class);
+                    break;
+                case 10:
+                    intent.setClass(mActivity, Main2Activity.class);
+                    break;
+                case 11:
+                    intent.setClass(mActivity, Main3Activity.class);
+                    break;
+                case 12:
+                    intent.setClass(mActivity, Main4Activity.class);
+                    break;
+                case 13:
+                    intent.setClass(mActivity, TestActivity.class);
+                    break;
+                case 14:
+                    intent.setClass(mActivity, Main6Activity.class);
+                    break;
+                case 15:
+                    intent.setClass(mActivity, Activity_Bitem7.class);
+                    break;
+                case 16:
+                    intent.setClass(mActivity, TestActivity.class);
+                    break;
+
                 default:
                     break;
             }
