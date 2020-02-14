@@ -143,7 +143,7 @@ public class Main6Activity extends AppCompatActivity implements View.OnClickList
            t4.setText(m.getSupplyName());
             mTb6.addView(v);
             i++;
-            if(i>6){
+            if(i>26){
                 break;
             }
         }
