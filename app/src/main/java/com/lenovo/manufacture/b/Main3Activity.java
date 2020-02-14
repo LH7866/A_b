@@ -129,6 +129,7 @@ public class Main3Activity extends AppCompatActivity implements View.OnClickList
         mBi = (ImageView) findViewById(R.id.bi);
         mBi.setOnClickListener(this);
         mBt = (TextView) findViewById(R.id.bt);
+        mBt.setText("人员解雇");
         mTb3 = (TableLayout) findViewById(R.id.tb_3);
     }
 
