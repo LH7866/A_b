@@ -32,6 +32,7 @@
         <activity android:name=".zhy.five.Problem" />
         <activity android:name=".czx.Item2Activity" />
         <activity android:name=".zhy.three.Market" />
+        <activity android:name=".b.Activity_Bitem7"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
