@@ -478,6 +478,7 @@ public class Main4Activity extends AppCompatActivity implements View.OnClickList
         mBi = (ImageView) findViewById(R.id.bi);
         mBi.setOnClickListener(this);
         mBt = (TextView) findViewById(R.id.bt);
+        mBt.setText("生产环节");
         mTe1 = (TextView) findViewById(R.id.te1);
         mLi1 = (FrameLayout) findViewById(R.id.li1);
         mTe2 = (TextView) findViewById(R.id.te2);

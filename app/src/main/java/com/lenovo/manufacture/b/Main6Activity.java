@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -56,7 +57,7 @@ public class Main6Activity extends AppCompatActivity implements View.OnClickList
      * 第四车间
      */
     private Button mBtn4;
-    private TableLayout mTb6;
+    private LinearLayout mTb6;
 
     private Timer t;
     List<Material> list6 = new ArrayList<>();
@@ -164,7 +165,7 @@ public class Main6Activity extends AppCompatActivity implements View.OnClickList
         mBtn3.setOnClickListener(this);
         mBtn4 = (Button) findViewById(R.id.btn4);
         mBtn4.setOnClickListener(this);
-        mTb6 = (TableLayout) findViewById(R.id.tb_6);
+        mTb6 = (LinearLayout) findViewById(R.id.tb_6);
     }
 
     @Override
