@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">智慧生产线</string>
+
+    <string-array name="type">
+        <item>独立悬挂系统</item>
+        <item>主动悬挂系统</item>
+        <item>横臂式悬挂系统</item>
+        <item>烛式悬挂系统</item>
+        <item>多连杆式悬挂系统</item>
+        <item>麦佛逊式悬挂系统</item>
+    </string-array>
+
+    <string-array name="type2">
+        <item>1.0</item>
+        <item>1.5</item>
+        <item>2.0</item>
+    </string-array>
 </resources>
