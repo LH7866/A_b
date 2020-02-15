@@ -6,8 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.Calendar;
+import com.lenovo.smarttraffic.bean.Balance;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public class MyHelper extends SQLiteOpenHelper {
 
@@ -63,23 +66,23 @@ public class MyHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-//    public List<Balance> find(){
-//        List<Balance> balances=new ArrayList<Balance>();
-//        MyHelper helper=new MyHelper(context);
-//        SQLiteDatabase db=helper.getReadableDatabase();//获取可读SQLiteDatabase对象
-//        Cursor cursor=db.rawQuery("select * from information where id>?",new String[]{"0"});
-//        if (cursor.getCount()!=0){//判断cursor有多少个数据，如果没有就不要进入循环了
-//            while (cursor.moveToNext()){
-////                Balance balance=new Balance();
-////                balance.setCarId(cursor.getString(cursor.getColumnIndex("car_num")));
-////                balance.setBalance(cursor.getString(cursor.getColumnIndex("price")));
-////                balance.setUser(cursor.getString(cursor.getColumnIndex("manager")));
-////                balance.setDate(cursor.getString(cursor.getColumnIndex("date_time")));
-////                balances.add(balance);
-//            }
-//        }
-//        cursor.close();//关闭游标
-//        db.close();
-//        return balances;
-//    }
+    public List<Balance> find(){
+        List<Balance> balances=new ArrayList<Balance>();
+        MyHelper helper=new MyHelper(context);
+        SQLiteDatabase db=helper.getReadableDatabase();//获取可读SQLiteDatabase对象
+        Cursor cursor=db.rawQuery("select * from information where id>?",new String[]{"0"});
+        if (cursor.getCount()!=0){//判断cursor有多少个数据，如果没有就不要进入循环了
+            while (cursor.moveToNext()){
+                Balance balance=new Balance();
+                balance.setCarId(cursor.getString(cursor.getColumnIndex("car_num")));
+                balance.setBalance(cursor.getString(cursor.getColumnIndex("price")));
+                balance.setUser(cursor.getString(cursor.getColumnIndex("manager")));
+                balance.setDate(cursor.getString(cursor.getColumnIndex("date_time")));
+                balances.add(balance);
+            }
+        }
+        cursor.close();//关闭游标
+        db.close();
+        return balances;
+    }
 }
