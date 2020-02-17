@@ -17,11 +17,13 @@ import com.lenovo.manufacture.b.Main2Activity;
 import com.lenovo.manufacture.b.Main3Activity;
 import com.lenovo.manufacture.b.Main4Activity;
 import com.lenovo.manufacture.b.Main6Activity;
+import com.lenovo.manufacture.b.Main8Activity;
+import com.lenovo.manufacture.b8.B8Activity;
 import com.lenovo.manufacture.czx.Item2Activity;
 import com.lenovo.manufacture.czx.Item6Activity;
 import com.lenovo.manufacture.czx.Item7Activity;
 import com.lenovo.manufacture.czx.Item8;
-import com.lenovo.manufacture.b.Problem;
+import com.lenovo.manufacture.zhy.five.Problem;
 import com.lenovo.manufacture.zhy.four.Production;
 import com.lenovo.manufacture.zhy.three.Market;
 
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 FrameLayout.LayoutParams.MATCH_PARENT,
                 FrameLayout.LayoutParams.MATCH_PARENT));
 
-        webView.loadUrl("file:///android_asset/index.html");
+        webView.loadUrl("file:///android_asset/indexb.html");
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -131,16 +133,16 @@ public class MainActivity extends AppCompatActivity {
                     intent.setClass(mActivity, Item2Activity.class);
                     break;
                 case 3:
-                    intent.setClass(mActivity, Market.class);// b2
+                    intent.setClass(mActivity, Market.class);
                     break;
                 case 4:
-                    intent.setClass(mActivity, Production.class); // b3
+                    intent.setClass(mActivity, Production.class);
                     break;
                     case 5:
                    intent.setClass(mActivity, Problem.class);  //
                     break;
                 case 6:
-                    intent.setClass(mActivity, Item6Activity.class); // b6
+                    intent.setClass(mActivity, Item6Activity.class);
                     break;
                 case 7:
                     intent.setClass(mActivity, Item7Activity.class);
@@ -161,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.setClass(mActivity, Main4Activity.class);
                     break;
                 case 13:
-                    intent.setClass(mActivity, TestActivity.class);
+                    intent.setClass(mActivity, Problem.class);
                     break;
                 case 14:
                     intent.setClass(mActivity, Main6Activity.class);
@@ -170,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.setClass(mActivity, Activity_Bitem7.class);
                     break;
                 case 16:
-                    intent.setClass(mActivity, TestActivity.class);
+                    intent.setClass(mActivity, B8Activity.class);
                     break;
 
                 default:

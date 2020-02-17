@@ -20,10 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".b.Main4Activity"></activity>
+        <activity android:name=".b8.B8Activity"></activity>
+        <activity android:name=".b.Main4Activity" />
         <activity android:name=".b.Main6Activity" />
         <activity android:name=".b.Main3Activity" />
         <activity android:name=".b.Main2Activity" />
+        <activity android:name=".b.Main8Activity" />
         <activity android:name=".zhy.four.Production" />
         <activity android:name=".czx.Shopping" />
         <activity android:name=".czx.Item7Activity" />
@@ -32,7 +34,7 @@
         <activity android:name=".zhy.five.Problem" />
         <activity android:name=".czx.Item2Activity" />
         <activity android:name=".zhy.three.Market" />
-        <activity android:name=".b.Activity_Bitem7"/>
+        <activity android:name=".b.Activity_Bitem7" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

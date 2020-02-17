@@ -239,6 +239,7 @@ public class Main4Activity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_main4);
         initView();
         a();
+        b();
     }
 
 
@@ -273,6 +274,10 @@ public class Main4Activity extends AppCompatActivity implements View.OnClickList
                 }
             }
         }, 0, 500);
+    }
+
+    private void b(){
+
     }
 
     private void send(int what, Object obj) {
