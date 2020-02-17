@@ -44,7 +44,6 @@ public class Main8Activity extends AppCompatActivity implements View.OnClickList
         bt = (TextView) findViewById(R.id.bt);
         bt.setBackground(d);
         bt.setText("车辆定制");
-
         btnFram1 = (Button) findViewById(R.id.btn_fram1);
         btnFram1.setBackgroundColor(Color.parseColor("#F2F2F2"));
         btnFram1.setOnClickListener(this);
@@ -69,7 +68,7 @@ public class Main8Activity extends AppCompatActivity implements View.OnClickList
                 btnFram2.setBackgroundColor(Color.WHITE);
                 initFragment1();
                 break;
-            case R.id.btnBack:
+            case R.id.bi:
                 finish();
                 break;
             case R.id.btn_fram2:
