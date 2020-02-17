@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import com.lenovo.manufacture.R;
 import com.lenovo.manufacture.ReUse.MyRe;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -26,191 +28,68 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Main4Activity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView mBi;
-    /**
-     *
-     */
     private TextView mBt;
-    /**
-     * 生产环节
-     */
     private TextView mTe1;
     private FrameLayout mLi1;
-    /**
-     * 生产环节
-     */
     private TextView mTe2;
     private FrameLayout mLi2;
-    /**
-     * 生产环节
-     */
     private TextView mTe3;
     private FrameLayout mLi3;
-    /**
-     * 生产环节
-     */
     private TextView mTe4;
     private FrameLayout mLi4;
-    /**
-     * 生产环节
-     */
     private TextView mTe5;
     private FrameLayout mLi5;
-    /**
-     * 生产环节
-     */
     private TextView mTe6;
     private FrameLayout mLi6;
-    /**
-     * 生产环节
-     */
     private TextView mTe7;
     private FrameLayout mLi7;
-    /**
-     * 生产环节
-     */
     private TextView mTe8;
     private FrameLayout mLi8;
-    /**
-     * 生产环节
-     */
     private TextView mTe9;
     private FrameLayout mLi9;
-    /**
-     * 生产环节
-     */
     private TextView mTe10;
     private FrameLayout mLi10;
-    /**
-     * 生产环节
-     */
     private TextView mTe11;
     private FrameLayout mLi11;
-    /**
-     * 生产环节
-     */
     private TextView mTe12;
     private FrameLayout mLi12;
-    /**
-     * 生产环节
-     */
     private TextView mTe13;
     private FrameLayout mLi13;
-    /**
-     * 生产环节
-     */
     private TextView mTe14;
     private FrameLayout mLi14;
-    /**
-     * 生产环节
-     */
     private TextView mTe15;
     private FrameLayout mLi15;
-    /**
-     * 生产环节
-     */
     private TextView mTe16;
     private FrameLayout mLi16;
-    /**
-     * 生产环节
-     */
     private TextView mTe17;
     private FrameLayout mLi17;
-    /**
-     * 生产环节
-     */
     private TextView mTe18;
     private FrameLayout mLi18;
-    /**
-     * 生产环节
-     */
     private TextView mTe19;
     private FrameLayout mLi19;
-    /**
-     * 生产环节
-     */
     private TextView mTe20;
     private FrameLayout mLi20;
-    private Timer t;
+    private Timer t,t2;
     private List<Product> lb6;
-    /**
-     * HP:100/100
-     */
     private TextView mTx1;
-    /**
-     * HP:100/100
-     */
     private TextView mTx2;
-    /**
-     * HP:100/100
-     */
     private TextView mTx3;
-    /**
-     * HP:100/100
-     */
     private TextView mTx4;
-    /**
-     * HP:100/100
-     */
     private TextView mTx5;
-    /**
-     * HP:100/100
-     */
     private TextView mTx6;
-    /**
-     * HP:100/100
-     */
     private TextView mTx7;
-    /**
-     * HP:100/100
-     */
     private TextView mTx8;
-    /**
-     * HP:100/100
-     */
     private TextView mTx9;
-    /**
-     * HP:100/100
-     */
     private TextView mTx10;
-    /**
-     * HP:100/100
-     */
     private TextView mTx11;
-    /**
-     * HP:100/100
-     */
     private TextView mTx12;
-    /**
-     * HP:100/100
-     */
     private TextView mTx13;
-    /**
-     * HP:100/100
-     */
     private TextView mTx14;
-    /**
-     * HP:100/100
-     */
     private TextView mTx15;
-    /**
-     * HP:100/100
-     */
     private TextView mTx16;
-    /**
-     * HP:100/100
-     */
     private TextView mTx17;
-    /**
-     * HP:100/100
-     */
     private TextView mTx18;
-    /**
-     * HP:100/100
-     */
     private TextView mTx19;
-    /**
-     * HP:100/100
-     */
     private TextView mTx20;
     private ImageView mIma1;
     private ImageView mIma2;
@@ -277,7 +156,31 @@ public class Main4Activity extends AppCompatActivity implements View.OnClickList
     }
 
     private void b(){
+        HashMap<String,String> m2 = new HashMap<>();
+        t2 = new Timer();
+        t2.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                JSONObject j = MyRe.re(m2,"/dataInterface/UserProductionLine/search");
+                if(j != null){
+                    try {
+                        if(j.getString("message").equals("SUCCESS")){
+                            JSONArray data = j.getJSONArray("data");
+                            JSONObject js = data.getJSONObject(0);
+                            if(js.optString("power") == ""){
+                                String stageId = js.getString("stageId");
+//                                Log.d("sss",stageId);
 
+                                send(2,stageId);
+                            }
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        },0,500);
     }
 
     private void send(int what, Object obj) {
@@ -296,9 +199,78 @@ public class Main4Activity extends AppCompatActivity implements View.OnClickList
                     sz(lb6);
                     t.cancel();
                     break;
+                case 2:
+                    t2.cancel();
+                    dq(msg.obj+"");
+                    break;
             }
         }
     };
+
+    private void dq(String s) {
+
+        if (s.equals("5")){
+//            Log.d("aaa",s);
+            mLi1.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("6")){
+            mLi2.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("7")){
+            mLi3.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("8")){
+            mLi4.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("9")){
+            mLi5.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("10")){
+            mLi6.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("11")){
+            mLi7.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("12")){
+            mLi8.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("13")){
+            mLi9.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("14")){
+            mLi10.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("15")){
+            mLi11.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("16")){
+            mLi12.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("17")){
+            mLi13.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("18")){
+            mLi14.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("19")){
+            mLi15.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("20")){
+            mLi16.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("21")){
+            mLi17.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("22")){
+            mLi18.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("23")){
+            mLi19.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+        if (s.equals("24")){
+            mLi20.setBackgroundColor(Color.parseColor("#82AAFF"));
+        }
+    }
 
     private void sz(List<Product> lb6) {
         int i = 0;
@@ -322,7 +294,7 @@ public class Main4Activity extends AppCompatActivity implements View.OnClickList
                 mLi1.setBackgroundColor(Color.GRAY);
                 mIma1.setVisibility(View.VISIBLE);
             }
-            mLi1.setBackgroundColor(Color.parseColor("#82AAFF"));
+//            mLi1.setBackgroundColor(Color.parseColor("#82AAFF"));
         }
         if (stageId.equals("6")) {
             mTe2.setText(plStepName);

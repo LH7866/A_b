@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.setClass(mActivity, Activity_Bitem7.class);
                     break;
                 case 16:
-                    intent.setClass(mActivity, B8Activity.class);
+                    intent.setClass(mActivity, Main8Activity.class);
                     break;
 
                 default:
