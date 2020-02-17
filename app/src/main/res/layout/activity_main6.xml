@@ -133,7 +133,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:layout_margin="1dp"
                         android:layout_weight="1"
                         android:width="0dp"
@@ -146,23 +146,25 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="56dp"
                             android:text="价格"
+                            android:gravity="center"
                             android:textColor="#000"
                             android:textSize="25sp"
-                            android:textStyle="bold"></TextView>
+                            android:textStyle="bold"/>
 
                         <ImageView
+                            android:id="@+id/jg"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="3dp"
-                            android:src="@drawable/triangle0001"></ImageView>
+                            android:layout_marginLeft="15dp"
+                            android:src="@drawable/triangle0002"/>
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:layout_margin="1dp"
                         android:layout_weight="1"
                         android:background="#fff"
@@ -174,16 +176,19 @@
                             android:layout_marginLeft="56dp"
                             android:padding="1dp"
                             android:text="数量"
+                            android:gravity="center"
                             android:textAlignment="center"
                             android:textColor="#000"
                             android:textSize="25sp"
-                            android:textStyle="bold"></TextView>
+                            android:textStyle="bold"/>
 
                         <ImageView
+                            android:id="@+id/sl"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
-                            android:src="@drawable/triangle0002"></ImageView>
+                            android:src="@drawable/triangle0002"/>
+
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="0dp"
