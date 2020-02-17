@@ -6,8 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.JsonReader;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -15,13 +13,9 @@ import android.widget.TextView;
 
 import com.lenovo.manufacture.R;
 import com.lenovo.manufacture.ReUse.MyRe;
-import com.lenovo.manufacture.b.Main4Activity;
 import com.lenovo.manufacture.b.Product;
-import com.lenovo.manufacture.zhy.Bean.five.ProductBean;
-import com.lenovo.manufacture.zhy.four.Student;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;

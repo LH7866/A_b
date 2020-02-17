@@ -1,4 +1,4 @@
-package com.lenovo.manufacture.zhy.Bean.four;
+package com.lenovo.manufacture.zhy.Bean.five;
 
 public class StuBean {
 

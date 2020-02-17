@@ -31,6 +31,7 @@
         <activity android:name=".czx.Item7Activity" />
         <activity android:name=".czx.Item6Activity" />
         <activity android:name=".czx.Item8" />
+        <activity android:name=".b.Problem" />
         <activity android:name=".zhy.five.Problem" />
         <activity android:name=".czx.Item2Activity" />
         <activity android:name=".zhy.three.Market" />

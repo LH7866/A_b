@@ -6,9 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+//import com.lenovo.smarttraffic.bean.Balance;
 
+import java.util.ArrayList;
 import java.util.Calendar;
-
+import java.util.List;
 
 public class MyHelper extends SQLiteOpenHelper {
 

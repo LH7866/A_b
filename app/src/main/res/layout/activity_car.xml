@@ -183,6 +183,7 @@
                     android:id="@+id/etNumber"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:background="#fff"
                     android:inputType="numberDecimal"
                     android:padding="5dp"
                     android:textColor="@android:color/black" />
@@ -210,7 +211,7 @@
                     android:id="@+id/spinner2"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-
+                   />/ android:entries="@layout/activity_car"
                     android:minWidth="150dp" />
             </LinearLayout>
 

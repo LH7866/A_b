@@ -8,17 +8,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TableLayout;
+import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.lenovo.manufacture.R;
 import com.lenovo.manufacture.ReUse.MyRe;
-import com.lenovo.manufacture.zhy.Bean.four.CardBean;
-import com.lenovo.manufacture.zhy.Bean.four.CardInfiBean;
-import com.lenovo.manufacture.zhy.Bean.four.ProductLine;
-import com.lenovo.manufacture.zhy.Bean.four.StuBean;
-import com.lenovo.manufacture.zhy.Bean.four.problem;
+import com.lenovo.manufacture.zhy.Bean.five.CardBean;
+import com.lenovo.manufacture.zhy.Bean.five.CardInfiBean;
+import com.lenovo.manufacture.zhy.Bean.five.ProductLine;
+import com.lenovo.manufacture.zhy.Bean.five.StuBean;
+import com.lenovo.manufacture.zhy.Bean.five.problem;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -431,29 +432,29 @@ public class Problem extends AppCompatActivity implements View.OnClickListener {
     public void addView() {
         tableLayout.removeAllViews();
 
-//        loop:for (problem bean : this.listp) {
-//            View view1 = View.inflate(Problem.this, R.layout.table_product, null);
-//            TextView textView1 = view1.findViewById(R.id.tp_1);
-//            TextView textView2 = view1.findViewById(R.id.tp_2);
-//            TextView textView3 = view1.findViewById(R.id.tp_3);
-//            TextView textView4 = view1.findViewById(R.id.tp_4);
-//            TextView textView5 = view1.findViewById(R.id.tp_5);
-//            textView1.setText(bean.getId());
-//            for(CardBean cardBean: this.listCard){
-//                textView2.setText(cardBean.getCarName());
-//                textView3.setText(cardBean.getContent());
-//                for (ProductLine productLine: this.listline){
-//                    for (StuBean stuBean: this.liststu){
-//                        textView4.setText(productLine.getProductionLineName()+"("+stuBean.getId()+")");
-//                        for (CardInfiBean cardInfiBean: this.listmoney){
-//                            textView5.setText(cardInfiBean.getRepairGold());
-//                            continue loop;
-//                        }
-//                    }
-//                }
-//            }
-//            tableLayout.addView(view1);
-//        }
+        loop:for (problem bean : this.listp) {
+            View view1 = View.inflate(Problem.this, R.layout.table_product, null);
+            TextView textView1 = view1.findViewById(R.id.tp_1);
+            TextView textView2 = view1.findViewById(R.id.tp_2);
+            TextView textView3 = view1.findViewById(R.id.tp_3);
+            TextView textView4 = view1.findViewById(R.id.tp_4);
+            TextView textView5 = view1.findViewById(R.id.tp_5);
+            textView1.setText(bean.getId());
+            for(CardBean cardBean: this.listCard){
+                textView2.setText(cardBean.getCarName());
+                textView3.setText(cardBean.getContent());
+                for (ProductLine productLine: this.listline){
+                    for (StuBean stuBean: this.liststu){
+                        textView4.setText(productLine.getProductionLineName()+"("+stuBean.getId()+")");
+                        for (CardInfiBean cardInfiBean: this.listmoney){
+                            textView5.setText(cardInfiBean.getRepairGold());
+                            continue loop;
+                        }
+                    }
+                }
+            }
+            tableLayout.addView(view1);
+        }
     }
 
 

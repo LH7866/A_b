@@ -1,4 +1,4 @@
-package com.lenovo.manufacture.zhy.Bean.five;
+package com.lenovo.manufacture.zhy.Bean.four;
 
 public class ProductBean {
         /**
