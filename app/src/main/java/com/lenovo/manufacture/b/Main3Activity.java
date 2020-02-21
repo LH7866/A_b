@@ -4,7 +4,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -137,15 +139,16 @@ public class Main3Activity extends AppCompatActivity implements View.OnClickList
             TextView t1 = v.findViewById(R.id.tq_1);
             TextView t2 = v.findViewById(R.id.tq_2);
             TextView t3 = v.findViewById(R.id.tq_3);
-
             t1.setText(p.getName());
             if (Integer.parseInt(p.getStatus()) == 0) {
                 t2.setText("工程师");
             } else if (Integer.parseInt(p.getStatus()) == 1) {
                 t2.setText("工人");
-            } else if (Integer.parseInt(p.getStatus()) == 2) {
+            }
+            else if (Integer.parseInt(p.getStatus()) == 2) {
                 t2.setText("技术人员");
-            } else {
+            }
+            else {
                 t2.setText("检测人员");
 
             }
@@ -154,6 +157,9 @@ public class Main3Activity extends AppCompatActivity implements View.OnClickList
             mTb3.addView(v);
 
         }
+
+//        int len = mTb3.getChildCount();
+//        Log.d("sss",len+"");
 
     }
 

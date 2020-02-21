@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.lenovo.manufacture.MainActivity;
 import com.lenovo.manufacture.R;
 import com.lenovo.manufacture.ReUse.MyRe;
-import com.lenovo.manufacture.zhy.Bean.five.AlatBean;
 import com.lenovo.manufacture.zhy.Bean.five.CardBean;
 import com.lenovo.manufacture.zhy.Bean.five.CardInfiBean;
 
@@ -45,15 +44,12 @@ public class Problem extends AppCompatActivity implements View.OnClickListener {
     CardBean c;
     ProductLine line;
     CardInfiBean money;
+    Map<String, String> b = new HashMap<>();
     List<problem> listp = new ArrayList<>();
     List<StuBean> liststu = new ArrayList<>();
     List<ProductLine> listline = new ArrayList<>();
     List<CardBean> listCard = new ArrayList<>();
     List<CardInfiBean> listmoney = new ArrayList<>();
-
-    List<AlatBean>al=new ArrayList<>();
-    AlatBean alatBean;
-
     int u = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,33 +70,27 @@ public class Problem extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void run() {
                         try {
-                            //全部学生问题车辆
-                            m1.put("", str);
-                            JSONObject j1 = MyRe.re(m1, "/dataInterface/UserQuestion/getAll");
-                            if (j1 != null) {
-                                if (j1.getString("message").equals("SUCCESS")) {
-                                    JSONArray data = j1.getJSONArray("data");
-                                    for (int i = 0; i < data.length(); i++) {
-                                        JSONObject jsonObject = data.getJSONObject(i);
-                                        p = new problem();
-                                        p.setId(jsonObject.getString("id"));
-                                        p.setCarId(jsonObject.getString("carId"));
-                                        p.setUserProductionLineId(jsonObject.getString("userProductionLineId"));
-
-                                        listp.add(p);
-                                          Log.i("学生问题车辆1", p + "");
-
-                                          alatBean=new AlatBean();
-                                          alatBean.setId(jsonObject.getString("id"));
-                                          alatBean.setUserProductionLineId(jsonObject.getString("userProductionLineId"));
-                                          al.add(alatBean);
-
-
-                                        Log.i("学生问题车辆2", alatBean + "");
+                                //全部学生问题车辆
+                                m1.put("", str);
+                                JSONObject j1 = MyRe.re(m1, "/dataInterface/UserQuestion/getAll");
+                                if (j1 != null) {
+                                    if (j1.getString("message").equals("SUCCESS")) {
+                                        JSONArray data = j1.getJSONArray("data");
+                                        for (int i = 0; i < data.length(); i++) {
+                                            JSONObject jsonObject = data.getJSONObject(i);
+                                            p = new problem();
+                                            p.setId(jsonObject.getString("id"));
+                                            p.setCarId(jsonObject.getString("carId"));
+                                            if(jsonObject.getString("carId") == "2"){
+                                                Log.d("qaqaq",jsonObject.getString("carId"));
+                                            }
+                                            p.setUserProductionLineId(jsonObject.getString("userProductionLineId"));
+                                            listp.add(p);
+//                                            Log.i("学生问题车辆1", p + "");
+                                        }
+                                        send(1, 1);
                                     }
-                                    send(1, 1);
                                 }
-                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -124,27 +114,27 @@ public class Problem extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void run() {
                         try {
-                            //获取生产线
-                            m2.put("id", str);
-                            JSONObject j2 = MyRe.re(m2, "/dataInterface/UserProductionLine/getInfo");
-                            if (j2 != null ) {
-                                if (j2.getString("message").equals("SUCCESS")) {
-                                    JSONArray data = j2.getJSONArray("data");
+                                //获取生产线
+                                m2.put("id", str);
+                                JSONObject j2 = MyRe.re(m2, "/dataInterface/UserProductionLine/getInfo");
+                                if (j2 != null ) {
+                                    if (j2.getString("message").equals("SUCCESS")) {
+                                        JSONArray data = j2.getJSONArray("data");
 //                                        Log.i("232", data + "");
-                                    for (int i = 0; i < data.length(); i++) {
-                                        JSONObject jsonObject = data.getJSONObject(i);
-                                        s = new StuBean();
-                                        if (jsonObject.optString("userProductionLineId") == "") {
-                                            s.setProductionLineId(jsonObject.optString("productionLineId"));
-                                            s.setId(jsonObject.getString("id"));
-                                            liststu.add(s);
-                                            send(2, 1);
+                                        for (int i = 0; i < data.length(); i++) {
+                                            JSONObject jsonObject = data.getJSONObject(i);
+                                            s = new StuBean();
+                                            if (jsonObject.optString("userProductionLineId") == "") {
+                                                s.setProductionLineId(jsonObject.optString("productionLineId"));
+                                                s.setId(jsonObject.getString("id"));
+                                                liststu.add(s);
+                                                send(2, 1);
+
+                                            }
 
                                         }
 
                                     }
-
-                                }
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -169,35 +159,30 @@ public class Problem extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void run() {
                         try {
-                            //获取生产线
-                            m3.put("id", str);
-                            JSONObject j3 = MyRe.re(m3, "/dataInterface/ProductionLine/getInfo");
-                            if (j3 != null) {
-                                if (j3.getString("message").equals("SUCCESS")) {
-                                    JSONArray data1 = j3.getJSONArray("data");
-                                    for (int i = 0; i < data1.length(); i++) {
-                                        JSONObject jsp = data1.getJSONObject(i);
-                                        line = new ProductLine();
-                                        alatBean=new AlatBean();
-                                        if (jsp.optString("isAI") == ""){
-                                            line.setProductionLineName(jsp.optString("productionLineName"));
-                                            line.setContent(jsp.optString("content"));
-                                            line.setCarId(jsp.optString("carId"));
-                                            line.setId(jsp.optString("id"));
-                                            listline.add(line);
-                                              Log.i("=========666", line + "");
+                                //获取生产线
+                                m3.put("id", str);
+                                JSONObject j3 = MyRe.re(m3, "/dataInterface/ProductionLine/getInfo");
+                                if (j3 != null) {
+                                    if (j3.getString("message").equals("SUCCESS")) {
+                                        JSONArray data1 = j3.getJSONArray("data");
+                                        for (int i = 0; i < data1.length(); i++) {
+                                            JSONObject jsp = data1.getJSONObject(i);
+                                            line = new ProductLine();
+                                            if (jsp.optString("isAI") == ""){
+                                                line.setProductionLineName(jsp.optString("productionLineName"));
+                                                line.setContent(jsp.optString("content"));
+                                                line.setCarId(jsp.optString("carId"));
+                                                line.setId(jsp.optString("id"));
+                                                listline.add(line);
+//                                                Log.i("=========666", line + "");
+                                                send(3, 1);
+                                            }
 
-                                            alatBean.setProductionLineName(jsp.optString("productionLineName"));
-                                            al.add(alatBean);
-                                            Log.i("=========666", alatBean + "");
-                                            send(3, 1);
                                         }
 
                                     }
 
                                 }
-
-                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -220,35 +205,29 @@ public class Problem extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void run() {
                         try {
-                            //查询车辆
-                            m4.put("id", str);
-                            JSONObject j3 = MyRe.re(m4, "/dataInterface/Car/getInfo");
-                            if (j3 != null) {
+                                //查询车辆
+                                m4.put("id", str);
+                                JSONObject j3 = MyRe.re(m4, "/dataInterface/Car/getInfo");
+                                if (j3 != null) {
 
-                                if (j3.getString("message").equals("SUCCESS")) {
-                                    JSONArray data2 = j3.getJSONArray("data");
-                                    for (int i = 0; i < data2.length(); i++) {
-                                        JSONObject jspc = data2.getJSONObject(i);
-                                        c = new CardBean();
-                                        alatBean=new AlatBean();
-                                        if (jspc.optString("userProductionLineId") == "") {
-                                            // Log.i("=========555", jspc + "");
-                                            c.setCarName(jspc.getString("carName"));
-                                            c.setContent(jspc.getString("content"));
-                                            listCard.add(c);
+                                    if (j3.getString("message").equals("SUCCESS")) {
+                                        JSONArray data2 = j3.getJSONArray("data");
+                                        for (int i = 0; i < data2.length(); i++) {
+                                            JSONObject jspc = data2.getJSONObject(i);
+                                            c = new CardBean();
 
-                                            alatBean.setCardName(jspc.getString("carName"));
-                                            alatBean.setContent(jspc.getString("content"));
-                                            al.add(alatBean);
+                                            if (jspc.optString("userProductionLineId") == "") {
+                                           // Log.i("=========555", jspc + "");
+                                                c.setCarName(jspc.getString("carName"));
+                                                c.setContent(jspc.getString("content"));
+                                                listCard.add(c);
+                                                send(4, 1);
+                                            }
 
-                                            Log.i("=======999",alatBean+"");
-                                            send(4, 1);
                                         }
 
                                     }
-
                                 }
-                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -270,35 +249,32 @@ public class Problem extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void run() {
                         try {
-                            //查询车辆的维修费
-                            m5.put("id", str);
-                            JSONObject j5 = MyRe.re(m5, "/dataInterface/CarInfo/getAll");
-                            if (j5 != null) {
-                                if (j5.getString("message").equals("SUCCESS")) {
-                                    JSONArray datam = j5.getJSONArray("data");
-                                    for (int m = 0; m < datam.length(); m++) {
-                                        JSONObject jc = datam.getJSONObject(m);
-                                        money = new CardInfiBean();
-                                        alatBean=new AlatBean();
+                                //查询车辆的维修费
+                                m5.put("id", str);
+                                JSONObject j5 = MyRe.re(m5, "/dataInterface/CarInfo/getAll");
+                                if (j5 != null) {
+                                    if (j5.getString("message").equals("SUCCESS")) {
+                                        JSONArray datam = j5.getJSONArray("data");
+                                        for (int m = 0; m < datam.length(); m++) {
+                                            JSONObject jc = datam.getJSONObject(m);
+                                            money = new CardInfiBean();
 
+                                            if(jc.optString("carName") == ""){
+                                                u++;
+//                                                Log.i("=====8666", datam + "");
+                                                money.setRepairGold(jc.optString("repairGold"));
+                                                listmoney.add(money);
+                                                if(u == 1) {
+                                                    send(5, 1);
+                                                }
 
-                                            money.setRepairGold(jc.optString("repairGold"));
-                                            listmoney.add(money);
+                                            }
 
-                                            alatBean.setRepairGold(jc.getString("repairGold"));
-                                            al.add(alatBean);
-                                            Log.i("======8888888",alatBean+"");
-
-                                                send(5, 1);
-
-
-
+                                        }
 
                                     }
 
                                 }
-
-                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -357,9 +333,8 @@ public class Problem extends AppCompatActivity implements View.OnClickListener {
         Log.d("sss3",listline+"");
         Log.d("sss4",liststu+"");
         Log.d("sss5",listmoney +"");
-        Log.d("sss6",al+"");
 
-           for (problem bean : this.listp) {
+        for (problem bean : this.listp) {
             View view1 = View.inflate(Problem.this, R.layout.table_product, null);
             TextView textView1 = view1.findViewById(R.id.tp_1);
             TextView textView2 = view1.findViewById(R.id.tp_2);
@@ -384,9 +359,6 @@ public class Problem extends AppCompatActivity implements View.OnClickListener {
         }
 
     }
-
-
-
 
 
     //全部学生问题车辆

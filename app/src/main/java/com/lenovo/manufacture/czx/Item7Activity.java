@@ -5,7 +5,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebView;
@@ -32,14 +31,17 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -59,7 +61,7 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
     private ScrollView mSv2;
     private Timer t = new Timer();
     List<sell> list;
-    int a = 0,b = 0,c = 0,i = 1;
+    int a = 0, b = 0, c = 0, i = 1, x = 0, y = 0, z = 0;
     /**
      * 18,150,000
      */
@@ -76,6 +78,9 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
      * 80,000元
      */
     private TextView mT7;
+    private ImageView mSp1;
+    private ImageView mSp2;
+    private ImageView mSp3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,11 +136,79 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    private void send(int what, Object obj) {
+        Message message = Message.obtain();
+        message.what = what;
+        message.obj = obj;
+        Item7Activity.this.handler.sendMessage(MyRe.getMessage(what, obj));
+
+    }
+
+    Handler handler = new Handler() {
+
+        @RequiresApi(api = Build.VERSION_CODES.N)
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 1:
+                    addView(list);
+                    t.cancel();
+                default:
+                    break;
+
+            }
+        }
+    };
+
     //动态添加表格
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void da(List<sell> l) {
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void addView(List<sell> l) {
         //清除残留记录
         mTl2.removeAllViews();
+        int q = 0;
+        // 价格排序
+        if (x == 0) {
+            q = 0;
+            jg(q);
+        } else if (x % 2 == 1) {
+            q = 1;
+            jg(q);
+            q = 0;
+        } else {
+            q = 2;
+            jg(q);
+            q = 0;
+        }
+
+        // 时间排序
+        if (y == 0) {
+            q = 0;
+            sj(q);
+        } else if (y % 2 == 1) {
+            q = 1;
+            sj(q);
+            q = 0;
+        } else {
+            q = 2;
+            sj(q);
+            q = 0;
+        }
+
+        // 数量排序
+        if (z == 0) {
+            q = 0;
+            sl(q);
+        } else if (z % 2 == 1) {
+            q = 1;
+            sl(q);
+            q = 0;
+        } else {
+            q = 2;
+            sl(q);
+            q = 0;
+        }
+
         int sum = 0;
         i++;
         for (sell s : l) {
@@ -147,28 +220,111 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
 
             cN.setText(s.getName());
             p.setText(s.getPrice());
-            sum = sum + Integer.parseInt(s.getPrice());
-            if(s.getName().equals("SUV汽车") || i==1){
-                a = a +  Integer.parseInt(s.getPrice());
+            sum = sum + (Integer.parseInt(s.getPrice()) * Integer.parseInt(s.getNum()));
+            if (s.getName().equals("SUV汽车") || i == 1) {
+                a = a + (Integer.parseInt(s.getPrice()) * Integer.parseInt(s.getNum()));
             }
-            if(s.getName().equals("MPV汽车") || i==1){
-                b = b +  Integer.parseInt(s.getPrice());
+            if (s.getName().equals("MPV汽车") || i == 1) {
+                b = b + (Integer.parseInt(s.getPrice()) * Integer.parseInt(s.getNum()));
             }
-            if(s.getName().equals("轿车汽车") || i==1){
-                c = c +  Integer.parseInt(s.getPrice());
+            if (s.getName().equals("轿车汽车") || i == 1) {
+                c = c + (Integer.parseInt(s.getPrice()) * Integer.parseInt(s.getNum()));
             }
             t.setText(tr(s.getTime()) + "");
             n.setText(s.getNum());
             mTl2.addView(view);
 //            Log.d("sllslslss",tr(s.getTime())+"");
         }
-        mT4.setText(sum+"");
-        mT5.setText(a+" 元");
-        mT6.setText(b+" 元");
-        mT7.setText(c+" 元");
-        a = 0;b = 0;c =0;
+
+        mT4.setText(zh(sum + "") + " 元");
+        mT5.setText(zh(a + "") + " 元");
+        mT6.setText(zh(b + "") + " 元");
+        mT7.setText(zh(c + "") + " 元");
+        a = 0;
+        b = 0;
+        c = 0;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void jg(int q) {
+        // 1降  2升
+        if (q == 1) {
+            list.sort(new Comparator<sell>() {
+                @Override
+                public int compare(sell t1, sell t2) {
+                    return Integer.valueOf(t2.getPrice()).compareTo(Integer.valueOf(t1.getPrice()));
+                }
+            });
+            mSp1.setImageResource(R.drawable.triangle0003);
+        } else if (q == 2) {
+            list.sort(new Comparator<sell>() {
+                @Override
+                public int compare(sell t1, sell t2) {
+                    return Integer.valueOf(t1.getPrice()).compareTo(Integer.valueOf(t2.getPrice()));
+                }
+            });
+            mSp1.setImageResource(R.drawable.triangle0001);
+        }else {
+            mSp1.setImageResource(R.drawable.triangle0002);
+        }
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void sj(int q) {
+        // 1降  2升
+        if (q == 1) {
+            list.sort(new Comparator<sell>() {
+                @Override
+                public int compare(sell t1, sell t2) {
+                    return Integer.valueOf(t2.getTime()).compareTo(Integer.valueOf(t1.getTime()));
+                }
+            });
+            mSp2.setImageResource(R.drawable.triangle0003);
+        } else if (q == 2) {
+            list.sort(new Comparator<sell>() {
+                @Override
+                public int compare(sell t1, sell t2) {
+                    return Integer.valueOf(t1.getTime()).compareTo(Integer.valueOf(t2.getTime()));
+                }
+            });
+            mSp2.setImageResource(R.drawable.triangle0001);
+        }else {
+            mSp2.setImageResource(R.drawable.triangle0002);
+        }
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void sl(int q) {
+        // 1降  2升
+        if (q == 1) {
+            list.sort(new Comparator<sell>() {
+                @Override
+                public int compare(sell t1, sell t2) {
+                    return Integer.valueOf(t2.getNum()).compareTo(Integer.valueOf(t1.getNum()));
+                }
+            });
+            mSp3.setImageResource(R.drawable.triangle0003);
+        } else if (q == 2) {
+            list.sort(new Comparator<sell>() {
+                @Override
+                public int compare(sell t1, sell t2) {
+                    return Integer.valueOf(t1.getNum()).compareTo(Integer.valueOf(t2.getNum()));
+                }
+            });
+            mSp3.setImageResource(R.drawable.triangle0001);
+        }else {
+            mSp3.setImageResource(R.drawable.triangle0002);
+        }
+
+    }
+
+    private String zh(String str) {
+        DecimalFormat d = new DecimalFormat();
+        d.applyPattern("#,###");
+        return d.format(Double.parseDouble(str));
+    }
 
     private static String tr(String millSecond) {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -177,28 +333,7 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
         return formatter.format(calendar.getTime());
     }
 
-    private void send(int what, Object obj) {
 
-        Item7Activity.this.handler.sendMessage(MyRe.getMessage(what, obj));
-
-    }
-
-    Handler handler = new Handler() {
-
-        @RequiresApi(api = Build.VERSION_CODES.M)
-        @Override
-        public void handleMessage(@NonNull Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what) {
-                case 1:
-                    da(list);
-                    t.cancel();
-                default:
-                    break;
-
-            }
-        }
-    };
 
     private void initLine() {
         mLc2.setExtraOffsets(24f, 24f, 24, 0f);
@@ -254,7 +389,7 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
     private void setData() {
         List<Entry> yVals1 = new ArrayList<>();
         float[] ys1 = new float[]{
-                65f, 85f, 125f, 145f, 205f, 265f, 285f};
+                65f, 120f, 75f, 245f, 205f, 65f, 285f};
         for (int i = 0; i < ys1.length; i++) {
             yVals1.add(new Entry(i * 2, ys1[i]));
         }
@@ -285,8 +420,15 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
         mT5 = (TextView) findViewById(R.id.t5);
         mT6 = (TextView) findViewById(R.id.t6);
         mT7 = (TextView) findViewById(R.id.t7);
+        mSp1 = (ImageView) findViewById(R.id.sp1);
+        mSp1.setOnClickListener(this);
+        mSp2 = (ImageView) findViewById(R.id.sp2);
+        mSp2.setOnClickListener(this);
+        mSp3 = (ImageView) findViewById(R.id.sp3);
+        mSp3.setOnClickListener(this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -295,6 +437,24 @@ public class Item7Activity extends AppCompatActivity implements View.OnClickList
             case R.id.bi:
                 t.cancel();
                 finish();
+                break;
+            case R.id.sp1:
+                x++;
+                y = 0;
+                z = 0;
+                addView(list);
+                break;
+            case R.id.sp2:
+                y++;
+                x = 0;
+                z = 0;
+                addView(list);
+                break;
+            case R.id.sp3:
+                z++;
+                y = 0;
+                x = 0;
+                addView(list);
                 break;
         }
     }

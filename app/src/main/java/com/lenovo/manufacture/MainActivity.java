@@ -12,13 +12,12 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
-import com.lenovo.manufacture.b.Activity_Bitem7;
+import com.lenovo.manufacture.C.MC8Activity;
 import com.lenovo.manufacture.b.Main2Activity;
 import com.lenovo.manufacture.b.Main3Activity;
 import com.lenovo.manufacture.b.Main4Activity;
 import com.lenovo.manufacture.b.Main6Activity;
 import com.lenovo.manufacture.b.Main8Activity;
-import com.lenovo.manufacture.b8.B8Activity;
 import com.lenovo.manufacture.czx.Item2Activity;
 import com.lenovo.manufacture.czx.Item6Activity;
 import com.lenovo.manufacture.czx.Item7Activity;
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 FrameLayout.LayoutParams.MATCH_PARENT,
                 FrameLayout.LayoutParams.MATCH_PARENT));
 
-        webView.loadUrl("file:///android_asset/indexb.html");
+        webView.loadUrl("file:///android_asset/indexd.html");
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -169,12 +168,35 @@ public class MainActivity extends AppCompatActivity {
                     intent.setClass(mActivity, Main6Activity.class);
                     break;
                 case 15:
-                    intent.setClass(mActivity, Activity_Bitem7.class);
+                    intent.setClass(mActivity, MC8Activity.class);
                     break;
                 case 16:
                     intent.setClass(mActivity, Main8Activity.class);
                     break;
-
+                case 17:
+                    intent.setClass(mActivity, Item7Activity.class);
+                    break;
+                case 18:
+                    intent.setClass(mActivity, Item2Activity.class);
+                    break;
+                case 19:
+                    intent.setClass(mActivity, TestActivity.class);
+                    break;
+                case 20:
+                    intent.setClass(mActivity, Item8.class);
+                    break;
+                case 21:
+                    intent.setClass(mActivity, TestActivity.class);
+                    break;
+                case 22:
+                    intent.setClass(mActivity, Main8Activity.class);
+                    break;
+                case 23:
+                    intent.setClass(mActivity, TestActivity.class);
+                    break;
+                case 24:
+                    intent.setClass(mActivity, TestActivity.class);
+                    break;
                 default:
                     break;
             }
