@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".item2"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/top"></ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="500dp"
+            android:text="空调温度设置"
+            android:textSize="26sp"
+            android:textStyle="bold"></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="600dp"
+        android:layout_gravity="center"
+        android:layout_margin="55dp"
+        android:background="@color/cardview_light_background"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="260dp"
+            android:layout_height="300dp"
+            android:layout_margin="20dp"
+            android:background="@color/cardview_shadow_start_color"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/i1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="30dp"
+                    android:src="@drawable/cold0001" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/i2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="30dp"
+                    android:src="@drawable/hot0001" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/off"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:src="@drawable/off">
+            </ImageView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp">
+
+            <Button
+                android:id="@+id/b1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:gravity="center"
+                android:text="冷风"
+                android:textColor="#000"
+                android:textSize="25sp" />
+
+            <Button
+                android:id="@+id/b2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+                android:text="暖风"
+                android:textColor="#000"
+                android:textSize="25sp" />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
