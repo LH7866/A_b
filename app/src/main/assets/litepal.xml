@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lite>
+    <!--数据库名字 -->
+    <dbname value="demo" />
+
+    <!--数据库版本 -->
+    <version value="1" />
+
+    <!--数据库实体类,用于映射-->
+    <list>
+        <mapping class="com.lenovo.manufacture.b.entity.Temp" />
+
+    </list>
+
+</lite>
