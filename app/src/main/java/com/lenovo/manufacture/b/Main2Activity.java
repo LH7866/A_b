@@ -1,9 +1,16 @@
 package com.lenovo.manufacture.b;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.service.autofill.SaveCallback;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,10 +29,12 @@ import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.lenovo.manufacture.R;
 import com.lenovo.manufacture.ReUse.MyRe;
 import com.lenovo.manufacture.b.fragment.Temp;
+import com.lenovo.manufacture.zhy.three.Market;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONStringer;
 import org.litepal.LitePal;
 import org.litepal.crud.LitePalSupport;
 
@@ -51,15 +60,17 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
     private TextView mT3;
     private LineChart mLc;
     private Timer t;
-    List<Temp> temps=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         LitePal.initialize(Main2Activity.this);
-
         initView();
+        a();
+    }
+
+    private void a() {
         HashMap<String, String> m = new HashMap<>();
         m.put("id", "1");
         t = new Timer();
@@ -80,180 +91,129 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
                             Log.i("666666", outTemp + "");
 //                            mT2.setText(outTemp);
 //                            mT3.setText(workshopTemp);
-
-                            for(int i=0;i<temps.size();i++){
                                 Temp temp=new Temp();
-                                temp.setOutTemp(js.getString("workshopTemp"));
-                                temp.setWorkshopTemp(js.getString("outTemp"));
-                                temps.add(temp);
-                            }
-                            mLc.setNoDataText("nodata");
-                            Description description = new Description();
-                            description.setEnabled(false);
-                            mLc.setDescription(description);
-                            mLc.setBackgroundColor(Color.WHITE);
+                                temp.setWorkshopTemp(js.getString("workshopTemp"));
+                                temp.setOutTemp(js.getString("outTemp"));
+                                Log.i("233333","getInfo"+temp.getOutTemp()+temp.getWorkshopTemp());
 
-
-                            List<Entry> list = new ArrayList<>();
-                            List<Entry> list1 = new ArrayList<>();
-
-                            //data
-                            List<Temp> temps = LitePal.order("id desc").limit(12).find(Temp.class);
-                            Log.i("99999999",temps+"");
-                            int i = 0;
-                            for (Temp temp : temps) {
-                                String s = temp.getWorkshopTemp();
-                                s = s.substring(0, s.length() - 1);
-                                String ss = temp.getOutTemp();
-                                ss = ss.substring(0, ss.length() - 1);
-                                list1.add(new Entry(i, Integer.parseInt(s)));
-                                list.add(new Entry(i++, Integer.parseInt(ss)));
-                            }
-
-                            LineDataSet dataSet1 = new LineDataSet(list, "");
-                            dataSet1.setDrawCircles(false);
-                            dataSet1.setColor(Color.parseColor("#FF5B5B"));
-                            dataSet1.setDrawValues(false);
-
-
-                            LineDataSet dataSet2 = new LineDataSet(list1, "");
-                            dataSet2.setDrawValues(false);
-                            dataSet2.setColor(Color.parseColor("#82AAFF"));
-                            dataSet2.setDrawValues(false);
-
-
-                            LineData data1 = new LineData();
-                            data1.addDataSet(dataSet1);
-                            data1.addDataSet(dataSet2);
-
-
-                            XAxis axis = mLc.getXAxis();
-                            axis.setPosition(XAxis.XAxisPosition.BOTTOM);
-                            axis.setLabelCount(12);
-                            String[] time = new String[]{"00:00", "02:00", "04:00", "06:00", "08:00", "10:00", "12:00", "14:00", "16:00", "18:00", "20:00", "22:00", "24:00"};
-                            axis.setValueFormatter(new ValueFormatter() {
-                                @Override
-                                public String getFormattedValue(float value, AxisBase axis) {
-                                    return time[(int) value];
-                                }
-                            });
-
-                            //关闭右
-                            mLc.getAxisRight().setEnabled(false);
-                            YAxis yAxis = mLc.getAxisLeft();
-                            yAxis.setLabelCount(10);
-                            yAxis.setValueFormatter(new ValueFormatter() {
-                                @Override
-                                public String getFormattedValue(float value, AxisBase axis) {
-                                    return "";
-
-                                }
-                            });
-
-                            mLc.getLegend().setEnabled(false);
-                            mLc.setData(data1);
+                                temp.saveAsync().listen(new org.litepal.crud.callback.SaveCallback() {
+                                    @Override
+                                    public void onFinish(boolean success) {
+                                        if (success){
+                                            Log.d("=======", "getInfo: 保存成功 ");
+                                        }else{
+                                            Log.d("=======", "getInfo: 保存失败 ");
+                                        };
+                                    }
+                                });
+                                    send(1,"");
                         }
+
                     }
+
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-
-
             }
+
         }, 0, 5000);
 
-
-
     }
 
-    private void a() {
-
+    public void send(int what,Object obj){
+        Message message = Message.obtain();
+        message.what=what;
+        message.obj=obj;
+       Main2Activity.this.handler.sendMessage(message);
     }
+
+    @SuppressLint("HandlerLeak")
+    Handler handler=new Handler(){
+        public void handleMessage(@NonNull Message message){
+            super.handleMessage(message);
+            switch (message.what){
+                case 1:
+                    mpch();
+                    break;
+            }
+        }
+    };
+
 
 
 
     private void mpch() {
+        mLc.setNoDataText("nodata");
+        Description description = new Description();
+        description.setEnabled(false);
+        mLc.setDescription(description);
+        mLc.setBackgroundColor(Color.WHITE);
 
 
+        List<Entry> list = new ArrayList<>();
+        List<Entry> list1 = new ArrayList<>();
 
-//
-//    private void initLine() {
-//        mLc.setExtraOffsets(24f,24f,24,0f);
-//        mLc.setBackgroundColor(Color.parseColor("#ffffff"));
-//        mLc.animateXY(100,100);
-//        setLegend();
-//        setDescription("");
-//        setX();
-//        setY();
-//        setData();
-//    }
-//
-//    private void setLegend() {
-//        //设置样例
-//        Legend legend = new Legend();
-//        legend.setForm(Legend.LegendForm.LINE);
-//        legend.setFormSize(14f);
-//        legend.setTextColor(Color.BLACK);
-//    }
-//
-//    private void setDescription(String s) {
-//        Description description = new Description();
-//        description.setText(s);
-//        mLc.setDescription(description);
-//
-//    }
-//
-//    private void setX() {
-//        //设置x轴
-//        final XAxis xAxis = mLc.getXAxis();
-//        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-//        xAxis.setDrawGridLines(true);
-//        xAxis.setLabelCount(13);
-//        xAxis.setTextSize(12f);
-//        xAxis.setDrawAxisLine(false);
-//        xAxis.setGranularity(2f);
-//        xAxis.setAxisMaximum(24.00f);
-//        xAxis.setAxisMinimum(00.00f);
-//
-//    }
-//
-//    private void setY() {
-//        //设置y轴
-//        final YAxis yAxis = mLc.getAxisLeft();
-////            yAxis.setDrawAxisLine(false);
-//        yAxis.setLabelCount(7);
-////            yAxis.setDrawLabels(false);
-//        yAxis.setValueFormatter(new ValueFormatter() {
-//            @Override
-//            public String getFormattedValue(float value) {
-//                return "";
-//            }
-//        });
-//        mLc.getAxisRight().setEnabled(false); // 右侧Y轴不启用
-//
-//    }
-//
-//    private void setData() {
-//        List<Entry> yVals1 = new ArrayList<>();
-//        float[] ys1 = new float[] {
-//                9f, 19f, 6f, 8f, 10f, 18f, 11f, 16f, 19f, 3f,
-//                21f, 2f, 24f};
-//        for (int i = 0; i < ys1.length; i++) {
-//            yVals1.add(new Entry(i * 2,ys1[i]));
-//        }
-//
-//        // 分别通过每一组Entry对象集合的数据创建折线数据集
-//        LineDataSet lineDataSet1 = new LineDataSet(yVals1, "");
-//        lineDataSet1.setColor(Color.RED);
-//        lineDataSet1.setDrawCircles(false);
-//        lineDataSet1.setDrawValues(false);
-//        lineDataSet1.setLineWidth(1f); // 设置线宽为1
-//        // 3.将每一组折线数据集添加到折线数据中
-//        LineData lineData = new LineData(lineDataSet1);
-//        // 4.将折线数据设置给图表
-//        mLc.setData(lineData);
+        //data
+        List<Temp> temp = LitePal.order("id desc").limit(12).find(Temp.class);
+        Log.i("99999999",temp+"");
+        int i = 0;
+        for (Temp t : temp) {
+            String s = t.getWorkshopTemp();
+            s = s.substring(0, s.length() - 1);
+            String ss = t.getOutTemp();
+            ss = ss.substring(0, ss.length() - 1);
+            list1.add(new Entry(i, Integer.parseInt(s)));
+            list.add(new Entry(i++, Integer.parseInt(ss)));
+        }
+
+        LineDataSet dataSet1 = new LineDataSet(list, "");
+        dataSet1.setDrawCircles(false);
+        dataSet1.setColor(Color.parseColor("#FF5B5B"));
+        dataSet1.setDrawValues(false);
+
+
+        LineDataSet dataSet2 = new LineDataSet(list1, "");
+        dataSet2.setDrawValues(false);
+        dataSet2.setColor(Color.parseColor("#82AAFF"));
+        dataSet2.setDrawValues(false);
+
+
+        LineData data = new LineData();
+        data.addDataSet(dataSet1);
+        data.addDataSet(dataSet2);
+
+
+        XAxis axis = mLc.getXAxis();
+        axis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        axis.setLabelCount(12);
+        String[] time = new String[]{"00:00", "02:00", "04:00", "06:00", "08:00", "10:00", "12:00", "14:00", "16:00", "18:00", "20:00", "22:00", "24:00"};
+        axis.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return time[(int) value];
+            }
+        });
+
+        //关闭右
+        mLc.getAxisRight().setEnabled(false);
+        YAxis yAxis = mLc.getAxisLeft();
+        yAxis.setLabelCount(10);
+        yAxis.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return "";
+
+            }
+        });
+
+        mLc.getLegend().setEnabled(false);
+        mLc.setData(data);
+        mLc.invalidate();
+
+
    }
 
     private void initView() {
