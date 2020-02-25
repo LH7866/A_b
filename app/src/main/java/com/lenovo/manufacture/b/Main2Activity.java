@@ -185,7 +185,7 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
         data.addDataSet(dataSet1);
         data.addDataSet(dataSet2);
 
-
+            //设置X
         XAxis axis = mLc.getXAxis();
         axis.setPosition(XAxis.XAxisPosition.BOTTOM);
         axis.setLabelCount(12);
