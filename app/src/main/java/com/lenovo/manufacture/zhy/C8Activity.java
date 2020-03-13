@@ -1,15 +1,15 @@
 package com.lenovo.manufacture.zhy;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.lenovo.manufacture.R;
 import com.lenovo.manufacture.ReUse.MyRe;
@@ -17,10 +17,11 @@ import com.lenovo.manufacture.ReUse.MyRe;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.sql.Time;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
+
+
 
 public class C8Activity extends AppCompatActivity implements View.OnClickListener {
     private ImageView mBack;
@@ -33,81 +34,172 @@ public class C8Activity extends AppCompatActivity implements View.OnClickListene
      */
     private Button mCar;
     /**
-     * SUV生产线
+     *
      */
-    private Button mSuv;
+    private TextView mBt;
     /**
      * 位置1
      */
-    private Button mW1;
+    private Button mBtn1;
     /**
      * 位置2
      */
-    private Button mW2;
+    private Button mBtn2;
     /**
      * 位置3
      */
-    private Button mW3;
+    private Button mBtn3;
     /**
      * 位置4
      */
-    private Button mW4;
+    private Button mBtn4;
+    private Timer t;
+    /**
+     * MPV生产线
+     */
+    private Button mBtnMpv;
+    /**
+     * 轿车生产线
+     */
+    private Button mBtnCar;
+    /**
+     * SUV生产线
+     */
+    private Button mBtnSuv;
     /**
      * 创建
      */
-    private Button mCreate;
+    private Button mBtnCreate;
+
     int lineId;
-    int pos=1;
-    private Timer timer;
+    int pos = 4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_c8);
         initView();
+
+    }
+
+    private void a() {
+        HashMap<String, String> m = new HashMap<>();
+        t = new Timer();
+        t.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    JSONObject j = MyRe.re(m, "/dataInterface/UserProductionLine/getAll");
+                    if (j != null) {
+//                        Log.d("ssss",j+"");
+                        if (j.getString("message").equals("SUCCESS")) {
+                            JSONArray data = j.getJSONArray("data");
+                            for (int i = 0; i < data.length(); i++) {
+                                JSONObject js = data.getJSONObject(i);
+                                String p = js.getString("position");
+
+                                if (p.equals("1")) {
+                                    no(p);
+                                } else if (p.equals("2")) {
+                                    no(p);
+                                } else if (p.equals("3")) {
+                                    no(p);
+                                } else if (p.equals("0")) {
+                                    no(p);
+                                }
+                            }
+                            t.cancel();
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 0, 500);
+    }
+
+    //置灰
+    private void no(String p) {
+//        Log.d("sss",p);
+        if (p.equals("0")) {
+            mBtn1.setBackgroundColor(Color.GRAY);
+            mBtn1.setEnabled(false);
+        } else if (p.equals("1")) {
+            mBtn2.setBackgroundColor(Color.GRAY);
+            mBtn2.setEnabled(false);
+        } else if (p.equals("2")) {
+            mBtn3.setBackgroundColor(Color.GRAY);
+            mBtn3.setEnabled(false);
+        } else {
+            mBtn4.setBackgroundColor(Color.GRAY);
+            mBtn4.setEnabled(false);
+        }
+    }
+
+    private void b(int i){
+        if(i == 1){
+            mBtnMpv.setBackgroundColor(Color.parseColor("#069E78"));
+            mBtnCar.setBackgroundColor(Color.parseColor("#00CC99"));
+            mBtnSuv.setBackgroundColor(Color.parseColor("#00CC99"));
+        }else if(i == 2){
+            mBtnMpv.setBackgroundColor(Color.parseColor("#00CC99"));
+            mBtnCar.setBackgroundColor(Color.parseColor("#069E78"));
+            mBtnSuv.setBackgroundColor(Color.parseColor("#00CC99"));
+        }else {
+            mBtnMpv.setBackgroundColor(Color.parseColor("#00CC99"));
+            mBtnCar.setBackgroundColor(Color.parseColor("#00CC99"));
+            mBtnSuv.setBackgroundColor(Color.parseColor("#069E78"));
+        }
+        mBtn1.setBackgroundColor(Color.parseColor("#169BD5"));
+        mBtn2.setBackgroundColor(Color.parseColor("#169BD5"));
+        mBtn3.setBackgroundColor(Color.parseColor("#169BD5"));
+        mBtn4.setBackgroundColor(Color.parseColor("#169BD5"));
     }
 
     private void initView() {
         mBack = (ImageView) findViewById(R.id.back);
         mBack.setOnClickListener(this);
-        mMpv = (Button) findViewById(R.id.mvp);
-        mMpv.setOnClickListener(this);
-        mCar = (Button) findViewById(R.id.car);
-        mCar.setOnClickListener(this);
-        mSuv = (Button) findViewById(R.id.suv);
-        mSuv.setOnClickListener(this);
-        mW1 = (Button) findViewById(R.id.w1);
-        mW1.setOnClickListener(this);
-        mW2 = (Button) findViewById(R.id.w2);
-        mW2.setOnClickListener(this);
-        mW3 = (Button) findViewById(R.id.w3);
-        mW3.setOnClickListener(this);
-        mW4 = (Button) findViewById(R.id.w4);
-        mW4.setOnClickListener(this);
-        mCreate = (Button) findViewById(R.id.create);
-        mCreate.setOnClickListener(this);
+        mBt.setText("创建生产线");
+        mBtn1 = (Button) findViewById(R.id.w1);
+        mBtn1.setOnClickListener(this);
+        mBtn2 = (Button) findViewById(R.id.w2);
+        mBtn2.setOnClickListener(this);
+        mBtn3 = (Button) findViewById(R.id.w3);
+        mBtn3.setOnClickListener(this);
+        mBtn4 = (Button) findViewById(R.id.w4);
+        mBtn4.setOnClickListener(this);
+        mBtnMpv = (Button) findViewById(R.id.mvp);
+        mBtnMpv.setOnClickListener(this);
+        mBtnCar = (Button) findViewById(R.id.car);
+        mBtnCar.setOnClickListener(this);
+        mBtnSuv = (Button) findViewById(R.id.suv);
+        mBtnSuv.setOnClickListener(this);
+        mBtnCreate = (Button) findViewById(R.id.create);
+        mBtnCreate.setOnClickListener(this);
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case  R.id.back:
+    public void onClick(View v) {
+        switch (v.getId()) {
+            default:
+                break;
+            case R.id.bi:
                 finish();
                 break;
-
             case R.id.btn_mpv:
                 lineId = 1;
                 b(1);
-               getData();
+                a();
                 break;
             case R.id.btn_car:
                 lineId = 2;
                 b(2);//生产线和位置初始化
-               getData();
+                a();//请求
                 break;
             case R.id.btn_suv:
                 lineId = 3;
                 b(3);
-               getData();
+                a();
                 break;
             case R.id.btn_1:
                 pos = 0;
@@ -124,88 +216,16 @@ public class C8Activity extends AppCompatActivity implements View.OnClickListene
             case R.id.btn_create:
                 c(lineId,pos);
                 break;
-
         }
     }
-private  void b(int i){
-    if(i == 1){
-        mMpv.setBackgroundColor(Color.parseColor("#069E78"));
-        mCar.setBackgroundColor(Color.parseColor("#00CC99"));
-        mSuv.setBackgroundColor(Color.parseColor("#00CC99"));
-    }else if(i == 2){
-        mMpv.setBackgroundColor(Color.parseColor("#00CC99"));
-        mCar.setBackgroundColor(Color.parseColor("#069E78"));
-        mSuv.setBackgroundColor(Color.parseColor("#00CC99"));
-    }else {
-        mMpv.setBackgroundColor(Color.parseColor("#00CC99"));
-        mCar.setBackgroundColor(Color.parseColor("#00CC99"));
-        mSuv.setBackgroundColor(Color.parseColor("#069E78"));
+
+    private void c(int lineId, int pos) {
+        HashMap<String,String> m2 = new HashMap<>();
+        m2.put("lineId",lineId+"");
+        m2.put("pos",pos+"");
+//        Log.d("ssss",m2+"");
+        MyRe.re(m2,"/Interface/index/createStudentLine");
+        Toast.makeText(this,"该位置已存在生产线",Toast.LENGTH_SHORT).show();
     }
-    mW1.setBackgroundColor(Color.parseColor("#169BD5"));
-    mW2.setBackgroundColor(Color.parseColor("#169BD5"));
-    mW3.setBackgroundColor(Color.parseColor("#169BD5"));
-    mW4.setBackgroundColor(Color.parseColor("#169BD5"));
-}
-
-    private  void getData(){
-        HashMap<String,String>map=new HashMap<>();
-        timer=new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    JSONObject jsonObject= MyRe.re(map,"/dataInterface/UserProductionLine/getAll");
-                    if(jsonObject!=null){
-                        if("SUCCESS".equals(jsonObject.getString("message"))){
-                            JSONArray jsonArray=jsonObject.getJSONArray("data");
-                            for(int i=0;i<jsonArray.length();i++){
-                                JSONObject jsonObject1=jsonArray.getJSONObject(i);
-                                String  p=jsonObject1.getString("postion");
-                                if(p.equals("0")){
-                                    no(p);
-                                }else  if(p.equals("1")){
-                                    no(p);
-                                }else if(p.equals("2")){
-                                    no(p);
-                                }else  if(p.equals("3")){
-                                    no(p);
-                                }
-                            }
-                    timer.cancel();
-                        }
-                    }
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-        },0,500);
-
-    }
-
-private  void no(String p){
-    if(p.equals("0")){
-        mW1.setBackgroundColor(Color.GRAY);
-        mW1.setEnabled(false);
-    }else if(p.equals("1")){
-        mW2.setBackgroundColor(Color.GRAY);
-        mW2.setEnabled(false);
-    }else if(p.equals("2")){
-        mW3.setBackgroundColor(Color.GRAY);
-        mW3.setEnabled(false);
-    }else if(p.equals("3")) {
-        mW4.setBackgroundColor(Color.GRAY);
-        mW4.setEnabled(false);
-    }
-}
-private  void c(int lineId,int pos){
-        HashMap<String,String>map=new HashMap<>();
-        map.put("lineId",lineId+"");
-        map.put("pos",pos+"");
-          Log.d("999",map+"");
-        MyRe.re(map,"/Interface/index/createStudentLine");
-    Toast.makeText(this,"已经存在",Toast.LENGTH_SHORT).show();
-
-
-}
 
 }
